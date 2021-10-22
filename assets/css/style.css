@@ -1,0 +1,85 @@
+header {
+    background-color: yellow;
+}
+
+/* Search Container */
+
+#search-container {
+    display: inline;
+    margin-top: 20px;
+    font-size: 16px;
+    color: black;
+}
+
+#userQuery {
+    width: 200px;
+    background-color: white;
+    border: 1px solid black;
+    height: 30px;
+    font-size: 16px;
+}
+
+/* Radio Button Styling -- overriding Materialize's colors */
+
+[type="radio"]:checked + span:after,
+ 
+[type="radio"].with-gap:checked + span:before,
+ 
+[type="radio"].with-gap:checked + span:after {
+  border: 2px solid #ef5350;
+}
+ 
+ 
+[type="radio"]:checked + span:after,
+ 
+[type="radio"].with-gap:checked + span:after {
+  background-color: #ef5350;
+}
+
+
+/* Bio Styling */
+
+#bio-container {
+    padding: 10px;
+}
+#bio-el {
+    background-color: red;
+    padding: 10px;
+}
+
+/* Top 10 styling */
+
+#top-ten-container {
+    background-color: white;
+    padding: 10px;
+}
+
+#top-ten-el {
+    background-color: green;
+    padding: 10px;
+}
+
+
+/* Media Links  */
+
+#media-container {
+    background: white;
+    padding: 10px;
+}
+
+#artist-website {
+    background-color: pink;
+    padding: 10px;
+}
+
+#list-fm {
+    background-color: blue;
+    padding: 10px;
+}
+
+#twitter {
+    background-color: orange;
+    padding: 10px;
+}
+
+
