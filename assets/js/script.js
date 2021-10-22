@@ -12,6 +12,7 @@ fetch("https://genius.p.rapidapi.com/artists/16775/songs", {
 	console.error(err);
 });
 
+var artistID
 let artist = "bob dylan"
 let requestUrl = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
 
@@ -21,6 +22,10 @@ let requestUrl = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
     })
     .then(function (data) {
       console.log(data)
-      //Loop over the data to generate a table, each table row will have a link to the repo url
-      
-      })
+	  console.log(data.artists[0].idArtist)
+		let artistID = data.artists[0].idArtist
+		return artistID
+			
+		})
+
+		console.log(artistID)
