@@ -3,6 +3,7 @@
 const tadbApiKey = "523532";
 const tadbURL = "https://theaudiodb.com/api/v1/json/" + tadbApiKey + "/";
 const tadbArtist = "search.php?s="; // give artist name
+const tadbArtistTopTracks = "track-top10.php?s="; // give artist NAME!!
 const tadbArtistDetails = "artist.php?i=" // give artist ID
 const tadbAllAlbums = "album.php?i="; // give artist ID
 const tadbAlbumTracks = "track.php?m="; // give album ID

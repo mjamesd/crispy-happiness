@@ -20,23 +20,13 @@
             <h2>Chris P Happiness</h2>
         </div>
         <!-- Search Area -->
-        <div class="col s6 right-align" id="search-container">
+        <div class="col s6 right-align" id="searchContainer">
             <div class="row col s12">
-                <label for="userQuery" style="font-size: 16px; color: black;">Search</label>
-                <input type="text" id="userQuery" />
+                <label for="searchArtist" style="font-size: 16px; color: black;">Search</label>
+                <input type="text" id="searchArtist" />
             </div>
             <div class="row col s12 right-align">
-                <label>
-                    <input class="with-gap" id="radio-buttons" name="selection" type="radio" checked />
-                    <span style="color: black; font-weight: bold;">Artist</span>
-                </label>    &nbsp&nbsp&nbsp
-                     <label>
-                    <input class="with-gap" id="radio-buttons" name="selection" type="radio" />
-                    <span style="color: black; font-weight: bold;">Track</span>
-                </label>
-            </div>
-            <div class="row col s12 right-align">
-                <button class="btn waves-effect waves-dark" type="submit" name="action" id="searchBtn">Search
+                <button class="btn waves-effect waves-dark" type="submit" name="action" id="searchBtn">Search for Artist
                 </button>
             </div>
         </div>
@@ -48,40 +38,29 @@
     <div class="container">
     <div class="row">
         <!-- Artist Bio -->
-        <div class="col s12 center-align" id="bio-container">
-            <div class="col s12" id="bio-el">
-                Bio on the artist
+        <div class="col s12 center-align" id="artistBioContainer">
+            <div class="col s12" id="artistBio">
             </div>
         </div>
     </div>
     <!-- Artrist top 10 tracks -->
     <div class="row">
-        <div class="col s6" id="top-ten-container">
-            <div class="col s12" id="top-ten-el">
+        <div class="col s6" id="topTracksContainer">
+            <div class="col s12" id="topTracks">
                 Top tracks
-                <ul id="top-ten-list">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
-                    <li>10</li>
-                </ul>
+                <ol id="topTracksList">
+                </ol>
             </div>
         </div>
         <!-- Media Link Container -->
-        <div class="col s6 center-align" id="media-container">
-            <div class="row col s12" id="artist-website">
+        <div class="col s6 center-align" id="mediaContainer">
+            <div class="row col s12" id="artistWebsite">
                 Artist Website
             </div>
-            <div class="row col s12" id="list-fm">
-                List FM
+            <div class="row col s12" id="artistLastFm">
+                Last FM
             </div>
-            <div class="row col s12" id="twitter">
+            <div class="row col s12" id="artistTwitter">
                 Twitter
             </div>
 
@@ -93,13 +72,13 @@
     <footer>
         <div class="row">
             <div class="col s4 center-align">
-                TEXTY 1
+                About Us
             </div>
             <div class="col s4 center-align">
-                TEXTY 2
+                Github Repo
             </div>
             <div class="col s4 center-align">
-                TEXTY 3
+                Disclaimer
             </div>
         </div>
     </footer>
