@@ -13,17 +13,17 @@
 // });
 
 
-var storedMusic = JSON.parse(localStorage.getItem("music")) || [];
+// var storedMusic = JSON.parse(localStorage.getItem("music")) || [];
 
-var musicApi = "https://genius.p.rapidapi.com/";
-var lyricsApi = "";
+// var musicApi = "https://genius.p.rapidapi.com/";
+// var lyricsApi = "";
 
-var musicApiKey = "";
-var lyricApiKey = "";
+// var musicApiKey = "";
+// var lyricApiKey = "";
 
-$("#searchBtn").on('click', function(){
-  var searchInput = $("#input").val();
-  console.log('search input',searchInput)
+// $("#searchBtn").on('click', function(){
+//   var searchInput = $("#input").val();
+  // console.log('search input',searchInput)
 
   //we need to make the call
   //add the parameter
@@ -38,4 +38,4 @@ $("#searchBtn").on('click', function(){
   // create the new route for the selected song
   //create a link to the second page
   //
-})
+// })
