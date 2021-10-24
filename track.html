@@ -12,76 +12,81 @@
     <title>Crispy Happiness</title>
 </head>
 
-<header>
-    <div class="row">
-        <div class="col s9">
-            Crispy Header
-        </div>
-        <div class="col s3">
-            <button>Home</button>
-        </div>
-    </div>
-</header>
-
 <body>
-    
-    <!-- Artrist top 10 tracks -->
-    <div class="row">
-        <div class="col s5 offset-s1 center-align" id="social-container">
-            <div class="row" id="artist-website">
-                Content content content Content content content Content content content Content content content Content
-                content content Content content content Content content content Content content content Content content
-                content Content content content Content content content Content content content
-            </div>
-            <div class="row" id="list-fm">
-                Content content content Content content content Content content content Content content content Content
-                content content Content content content Content content content Content content content Content content
-                content Content content content Content content content Content content content
-            </div>
-            
-
-        </div>
-        <div class="col s5" id="top-ten-container">
-            <div class="col s12" id="top-ten-el">
-                Top tracks
-                <ul id="top-ten-list">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                  
-                </ul>
-            </div>
-        </div>
-       
-        <div class="row">
-            <!-- Artist Bio -->
-            <div class="col s10 offset-s1 center-align" id="bio-container">
-                <div class="col s12" id="bio-el">
-                    Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content  Content Content Content
+    <header>
+        <div class="container">
+            <div class="row">
+                <!-- header text -->
+                <div class="col s6">
+                    <h2>Chris P Happiness</h2>
+                </div>
+                <!-- Search Area -->
+                <div class="col s6 right-align" id="searchContainer">
+                    <div class="row col s12 right-align">
+                        <a href="index.html"><button class="btn waves-effect waves-dark" type="submit" name="action"
+                                id="searchBtn">Return Home
+                            </button></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s6 center-align" id="trackMediaContainer">
+                    <div class="row" id="trackGenre">
+                        Genre
+                        strGenre 
+                    </div>
+                    <div class="row" id="trackDesc">
+                        Track Information
+                    </div>
+                    <div class="row" id="trackYouTube">
+                        Link to a YouTube video for the track
+                        strMusicVid
+                    </div>
+                </div>
+                <div class="col s6" id="trackLyricContainer">
+                    <div class="col s12" id="trackLyrics">
+                        <center></center>Lyrics Go Here!</center>
 
-<footer>
-    <div class="row">
-        <div class="col s4 center-align">
-            TEXTY 1
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align" id="giphyPicsContainer">
+                    <div class="col s12" id="giphyPics">
+                        Giphy Pics Here
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col s4 center-align">
-            TEXTY 2
-        </div>
-        <div class="col s4 center-align">
-            TEXTY 3
-        </div>
-    </div>
-    
-</footer>
+    </main>
 
+    <footer>
+        <div class="container">
+            <div class="row" id="footerContainer">
+                <div class="col s4 center-align" id="footerEl">
+                    About Us
+                </div>
+                <div class="col s4 center-align" id="footerEl">
+                    Github Repo
+                </div>
+                <div class="col s4 center-align" id="footerEl">
+                    Disclaimer
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/artist.js"></script>
+    <script src="./assets/js/track.js"></script>
 </body>
 
 </html>
