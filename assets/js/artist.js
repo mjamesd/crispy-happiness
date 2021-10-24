@@ -73,8 +73,12 @@ function displayTopTracks(artistName) {
         console.log(topTracksResponse);
         topTracksListEl.empty();
         for (let index = 0; index < topTracksResponse.track.length; index++) {
-            topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).text(topTracksResponse.track[index].strTrack)));
+            topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function(){
+                localStorage.setItem("Track ID", $(this).attr("name"))
+            })))
+        
         }
+
     });
 }
 
