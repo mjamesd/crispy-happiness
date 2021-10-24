@@ -1,85 +1,160 @@
+/* General Styles */
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-color: navy;
+}
+
 header {
-    background-color: yellow;
+    margin-top: 20px;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+
+img {
+    border: 1px solid rgba(255, 255, 255, 0.349);
+}
+
+.row {
+    margin: 0px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.479);
+}
+
+
+/* Link coloring and hover effect */
+
+a:link {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover,
+a:visited:hover {
+    text-decoration: none;
+    color: black
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+    text-shadow: 1px 1px 1px black;
 }
 
 /* Search Container */
 
-#search-container {
+#searchContainer {
     display: inline;
     margin-top: 20px;
     font-size: 16px;
-    color: black;
+    color: white;
 }
 
-#userQuery {
-    width: 200px;
+#searchArtist {
+    width: 250px;
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid rgba(255, 255, 255, 0.349);
     height: 30px;
     font-size: 16px;
+    padding: 5px;
 }
 
-/* Radio Button Styling -- overriding Materialize's colors */
-
-[type="radio"]:checked + span:after,
- 
-[type="radio"].with-gap:checked + span:before,
- 
-[type="radio"].with-gap:checked + span:after {
-  border: 2px solid #ef5350;
-}
- 
- 
-[type="radio"]:checked + span:after,
- 
-[type="radio"].with-gap:checked + span:after {
-  background-color: #ef5350;
+#searchArtist::placeholder {
+    color: gray;
 }
 
+/* Content Styling */
 
-/* Bio Styling */
-
-#bio-container {
+#artistBioContainer,
+#topTracksContainer,
+#mediaContainer,
+#footerContainer,
+#trackLyricContainer,
+#trackMediaContainer {
+    background-color: transparent;
+    margin: 0px;
     padding: 10px;
+    text-align: center;
+    font-size: 20px;
 }
-#bio-el {
-    background-color: red;
+
+/* Artist Page Content Styling */
+
+#artistBio {
     padding: 10px;
+    background-color: rgba(255, 0, 0, 0.705);
+
 }
 
-/* Top 10 styling */
-
-#top-ten-container {
-    background-color: white;
+#topTracks {
+    text-align: left;
     padding: 10px;
+    background-color: rgba(255, 166, 0, 0.733);
+
 }
 
-#top-ten-el {
-    background-color: green;
+#artistWebsite { 
     padding: 10px;
+    background-color: rgba(255, 255, 0, 0.712);
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
-
-/* Media Links  */
-
-#media-container {
-    background: white;
+#artistLastFm {
     padding: 10px;
+    background-color: rgba(0, 128, 0, 0.705);
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
-#artist-website {
-    background-color: pink;
+#artistTwitter {
     padding: 10px;
+    background-color: rgba(0, 0, 255, 0.658);
+    margin: 0px;
 }
 
-#list-fm {
-    background-color: blue;
+
+/* Tracks Page Specific Styling */
+
+#trackGenre { 
     padding: 10px;
+    background-color: rgba(255, 0, 0, 0.705);
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
-#twitter {
-    background-color: orange;
+#trackInfo { 
     padding: 10px;
+    background-color: rgba(255, 166, 0, 0.733);
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
+#trackYouTube { 
+    padding: 10px;
+    background-color: rgba(255, 255, 0, 0.712);
+    margin: 0px;
+    margin-bottom: 10px;
+}
 
+#trackLyrics {
+    text-align: left;
+    padding: 10px;
+    background-color: rgba(0, 128, 0, 0.705);
+}
+
+#giphyPics {
+    text-align: left;
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.658);
+}
+
+/* Footer Specific Styling */
+
+#footerEl {
+    padding: 10px;
+    background-color: rgba(128, 0, 128, 0.726);
+}

@@ -38,6 +38,7 @@ const artistWebsiteEl = $("#artistWebsite");
 const artistLastFmEl = $("#artistLastFm");
 const artistTwitterEl = $("#artistTwitter");
 
+
 // Elements to use for selectors
 liEl = "<li>";
 aEl = "<a>";
@@ -56,7 +57,7 @@ async function getArtistInfo(artistName) {
 
 function displayBio(thisArtist) {
     artistBioEl.empty();
-    artistBioEl.append($("<img>").attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`));
+    artistBioEl.append($("<img>").attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`).attr("class", "responsive-img"));
 }
 
 
