@@ -39,3 +39,29 @@
   //create a link to the second page
   //
 // })
+let trackId = localStorage.getItem("Track ID")
+
+async function getTrackInfo(trackInfo) {
+  let thisSearch = settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": tadbURL + tadbTrack + trackId,
+      "method" : "GET"
+  };
+  return await $.ajax(thisSearch);
+
+  
+}
+
+function displayTrackDesc(trackDesc) {
+  console.log(trackDesc)
+  $("#trackDesc").append($("<p>").text(trackDesc.track[0].strDescriptionEN))
+
+}
+
+getTrackInfo(trackId).then(function(trackInfo) {
+  console.log(trackInfo);
+  console.log(trackInfo.track[0].strDescriptionEN)
+  displayTrackDesc(trackInfo)
+}
+)

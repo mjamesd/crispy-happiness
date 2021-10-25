@@ -38,6 +38,7 @@ const artistWebsiteEl = $("#artistWebsite");
 const artistLastFmEl = $("#artistLastFm");
 const artistTwitterEl = $("#artistTwitter");
 
+
 // Elements to use for selectors
 liEl = "<li>";
 aEl = "<a>";
@@ -56,7 +57,7 @@ async function getArtistInfo(artistName) {
 
 function displayBio(thisArtist) {
     artistBioEl.empty();
-    artistBioEl.append($("<img>").attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`));
+    artistBioEl.append($("<img>").attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`).attr("class", "responsive-img"));
 }
 
 
@@ -72,8 +73,12 @@ function displayTopTracks(artistName) {
         console.log(topTracksResponse);
         topTracksListEl.empty();
         for (let index = 0; index < topTracksResponse.track.length; index++) {
-            topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).text(topTracksResponse.track[index].strTrack)));
+            topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function(){
+                localStorage.setItem("Track ID", $(this).attr("name"))
+            })))
+        
         }
+
     });
 }
 
