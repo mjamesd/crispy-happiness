@@ -84,7 +84,9 @@ function displayTopTracks(artistName) {
 
 
 function displayLinks(artistInfo) {
-    
+    artistWebsiteEl.html($(aEl).attr("href","http://" + artistInfo.strWebsite).attr("target", "_blank").text(artistInfo.strWebsite))
+    artistLastFmEl.html($(aEl).attr("href", artistInfo.strLastFMChart).attr("target", "_blank").text(artistInfo.strArtist + " on Last.fm"))
+    artistTwitterEl.html($(aEl).attr("href","http://" + artistInfo.strTwitter).attr("target", "_blank").text(artistInfo.strArtist + " on Twitter"))
 }
 
 
