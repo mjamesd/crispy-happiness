@@ -40,6 +40,7 @@
   //
 // })
 let trackId = localStorage.getItem("Track ID")
+var wikiApiResult
 
 async function getTrackInfo(trackInfo) {
   let thisSearch = settings = {
@@ -48,20 +49,47 @@ async function getTrackInfo(trackInfo) {
       "url": tadbURL + tadbTrack + trackId,
       "method" : "GET"
   };
-  return await $.ajax(thisSearch);
-
-  
+  return await $.ajax(thisSearch);  
 }
 
 function displayTrackDesc(trackDesc) {
   console.log(trackDesc)
-  $("#trackDesc").append($("<p>").text(trackDesc.track[0].strDescriptionEN))
-
+  $("#trackDesc").append($("<p>").html(trackDesc.track[0].strDescriptionEN))
 }
 
 getTrackInfo(trackId).then(function(trackInfo) {
   console.log(trackInfo);
   console.log(trackInfo.track[0].strDescriptionEN)
   displayTrackDesc(trackInfo)
+  wikiAPI(trackInfo)
 }
 )
+
+
+
+function wikiAPI(trackName) {
+$.ajax({
+  // async: true,
+  // "crossDomain": true,
+  url: `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${trackName.track[0].strTrack} (${trackName.track[0].strArtist} song)&rvprop=content&format=json&origin=*`,
+  tyle : "GET",
+  dataType: "json",
+  success: function (result) {
+    wikiApiResult = result
+    consoleLog() 
+},
+error: function () {
+    console.log("error");
+}
+})
+
+
+}
+
+function consoleLog() {
+console.log(wikiApiResult)
+console.log(wikiApiResult.query.search[0])
+
+$("#trackGenre").append($("<p>").html(`<b>${wikiApiResult.query.search[0].title}</b>`)).append($("<p>").html(`${wikiApiResult.query.search[0].snippet} ...`)).append($("<p>").html(`<a href="http://en.wikipedia.org/?curid=${wikiApiResult.query.search[0].pageid}">... Read More on Wikipedia</a>`))
+
+}
