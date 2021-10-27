@@ -9,25 +9,26 @@ function getTrackInfo(trackInfo) {
     method: "GET",
     dataType: "json",
     success: function (result) {
+
       console.log(result)
-      adbResult = result
-      wikiAPI(adbResult)
-      displayTrackVid(adbResult)
-      displayTrackGenre(adbResult)
+      adbResults = result
+      wikiAPI(result.track[0])
+      displayTrackVid(result, result)
+      displayTrackGenre(result)
     }
 })
 }
 
 getTrackInfo()
 
-function wikiAPI(trackName) {
+function wikiAPI(trackInfo) {
   $.ajax({
-    url: `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${trackName.track[0].strTrack} (${trackName.track[0].strArtist} song)&format=json&origin=*`,
+    url: `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${trackInfo.strTrack} (${trackInfo.strArtist} song)&format=json&origin=*`,
     type: "GET",
     dataType: "json",
     success: function (result) {
       wikiApiResult = result
-      displayTrackDesc()
+      displayTrackDesc(trackInfo)
     },
     error: function () {
       console.log("error");
@@ -35,17 +36,16 @@ function wikiAPI(trackName) {
   })
 }
 
-function displayTrackDesc() {
-  if (adbResult.track[0].strDescriptionEN === null) {
+function displayTrackDesc(trackDescription) {
+  if (trackDescription.strDescriptionEN === null) {
     $("#trackDesc").append($("<p>").html(`<b>${wikiApiResult.query.search[0].title}</b>`)).append($("<p>").html(`${wikiApiResult.query.search[0].snippet} ...`)).append($("<p>").html(`<a href="http://en.wikipedia.org/?curid=${wikiApiResult.query.search[0].pageid}">... Read More on Wikipedia</a>`))
   } else {
-    $("#trackDesc").append(`<b>${wikiApiResult.query.search[0].title}</b><p>${adbResult.track[0].strDescriptionEN}`)
+    $("#trackDesc").append(`<b>${wikiApiResult.query.search[0].title}</b><p>${trackDescription.strDescriptionEN}`)
 }
 }
-
 
 function displayTrackVid(trackYouTube, songTitle) {
-  let _href = $("<a>").attr("href", trackYouTube).text(songTitle);
+  let _href = $("<a>").attr("href", trackYouTube.track[0].strMusicVid).text(songTitle.track[0].strTrack);
   $("#trackYouTube").append(_href)
 }
 
