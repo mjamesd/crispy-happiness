@@ -61,7 +61,7 @@ function displayBio(thisArtist) {
 }
 
 
-function displayTopTracks(artistName) {
+function displayTopTracks(artistName, artistInfo) {
     // tadbArtistTopTen
     let thisSearch = settings = {
         "async": true,
@@ -70,11 +70,15 @@ function displayTopTracks(artistName) {
         "method": "GET"
     };
     let thisTopTracks = $.ajax(thisSearch).then(function(topTracksResponse) {
-        console.log(topTracksResponse);
+        console.log('top response',topTracksResponse);
+        console.log('artist',artistName)
+        //save artist name inside localstorage
+        
         topTracksListEl.empty();
         for (let index = 0; index < topTracksResponse.track.length; index++) {
             topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function(){
                 localStorage.setItem("Track ID", $(this).attr("name"))
+
             })))
         
         }

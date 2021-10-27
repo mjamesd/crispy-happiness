@@ -18,7 +18,10 @@ const clLyrics_1 = "SearchLyricDirect?artist=";
 const clLyrics_2 = "&song=";// add artist name and song name and then combine clLyrics_1 & _2
 
 // Giphy "gi"
-const giApiKey_dev = "dc6zaTOxFJmzC";
+const giApiKey_dev = "y77I7HEXZ2xWwdfkxndsOFzyqCYZG2ip";
+// y77I7HEXZ2xWwdfkxndsOFzyqCYZG2ip
 const giAPiKey_prod = "";
-const giURL = "https://giphy.p.rapidapi.com/v1/gifs/search?api_key=" + giApiKey_dev
+const giURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giApiKey_dev
 const giSearch = "&q=";
+const giLimit = "limit=5";
+//https://api.giphy.com/v1/gifs/search?api_key=y77I7HEXZ2xWwdfkxndsOFzyqCYZG2ip&q=cat&limit=25&offset=0&rating=g&lang=en
