@@ -24,6 +24,10 @@ img {
     background-color: rgba(255, 255, 255, 0.479);
 }
 
+.displayNoneOnLoad {
+    display: none;
+}
+
 
 /* Link coloring and hover effect */
 
@@ -70,6 +74,7 @@ a:visited {
 
 #artistBioContainer,
 #topTracksContainer,
+#artistDiscography,
 #mediaContainer,
 #footerContainer,
 #trackLyricContainer,
@@ -83,17 +88,39 @@ a:visited {
 
 /* Artist Page Content Styling */
 
+#artistInfo {
+    display: none;
+}
+
 #artistBio {
     padding: 10px;
     background-color: rgba(255, 0, 0, 0.705);
-
 }
 
 #topTracks {
     text-align: left;
     padding: 10px;
     background-color: rgba(255, 166, 0, 0.733);
+    margin-bottom: 10px;
+}
 
+#topTracks h3 {
+    text-align: center;
+}
+
+#artistDiscography {
+    text-align: left;
+    padding: 10px;
+    background-color: rgba(0, 255, 21, 0.733);
+    margin-bottom: 10px;
+}
+
+#artistDiscography h3 {
+    text-align: center;
+}
+
+.discographyThumbnail {
+    width: 50px;
 }
 
 #artistWebsite { 
@@ -111,6 +138,13 @@ a:visited {
 }
 
 #artistTwitter {
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.658);
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+#artistFacebook {
     padding: 10px;
     background-color: rgba(0, 0, 255, 0.658);
     margin: 0px;
