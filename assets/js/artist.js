@@ -82,7 +82,6 @@ function displayTopTracks(artistName) {
             topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function () {
                 localStorage.setItem("Track ID", $(this).attr("name"))
             })))
-
         }
 
     });
@@ -147,3 +146,4 @@ searchBtnEl.click(() => {
         displayDiscography(artistInfo.idArtist);
     });
 });
+
