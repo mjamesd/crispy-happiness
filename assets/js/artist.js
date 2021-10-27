@@ -66,21 +66,37 @@ function displayBio(thisArtist) {
     // Jefrey -- add jQuery UI widget 'dialog' to display all bio text when "read more" is clicked... see line 81 & 82
 }
 
+
+
+function displayTopTracks(artistName, artistInfo) {
+    // tadbArtistTopTen
+    let thisSearch = settings = {
+
 // Write artist's top tracks as list items in "topTracksList" ordered list
 // Accepts artist name as parameter
 function displayTopTracks(artistName) {
     let thisSearch = {
+
         "async": true,
         "crossDomain": true,
         "url": tadbURL + tadbArtistTopTracks + artistName,
         "method": "GET"
     };
+
+    let thisTopTracks = $.ajax(thisSearch).then(function(topTracksResponse) {
+        console.log('top response',topTracksResponse);
+        console.log('artist',artistName)
+        //save artist name inside localstorage
+        
+
     let thisTopTracks = $.ajax(thisSearch).then(function (topTracksResponse) {
         console.log("Top Tracks: ", topTracksResponse);
+
         topTracksListEl.empty();
         for (let index = 0; index < topTracksResponse.track.length; index++) {
             topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function () {
                 localStorage.setItem("Track ID", $(this).attr("name"))
+
             })))
         }
 
