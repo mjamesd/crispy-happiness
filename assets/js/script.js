@@ -28,3 +28,16 @@ const giLimit = "limit=5";
 
 const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
 const wikiAfterSearch = "&format=json&origin=*"
+
+// Elements to use for selectors
+const divEl = "<div>";
+const h1El = "<h1>";
+const h2El = "<h2>";
+const h3El = "<h3>";
+const pEl = "<p>";
+const liEl = "<li>";
+const aEl = "<a>";
+const imgEl = "<img>";
+
+// Page variables
+const localStorageEntity = "cph-";

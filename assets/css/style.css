@@ -1,13 +1,10 @@
 /* General Styles */
-root {
-    
-}
 
 body {
     background-color: var(--background);
     --accent1: #fff;
     --accent2: #fc6907;
-    --accent3: rgba(177, 101, 2, 0.466);
+    --accent3: rgb(255, 189, 102);
     --background: #e6e6e6;
 }
 
@@ -27,10 +24,12 @@ ol {
 
 .btn {
     background-color: var(--accent3);
+    color: black
 }
 
 .btn:hover {
     background-color: black;
+    color: white;
 }
 
 .waves-effect.waves-black .waves-ripple {
@@ -239,6 +238,7 @@ a:visited {
     padding: 10px;
     background-color: rgba(0, 128, 0, 0.705);
     border: 1px solid rgba(255, 255, 255, 0.349);
+    white-space: pre-line;
 }
 
 #giphyPics {
@@ -251,7 +251,7 @@ a:visited {
 /* Footer Specific Styling */
 
 footer {
-    background-color: var(--accent1);
+    background-color: var(--background);
 }
 
 #footercontainer {

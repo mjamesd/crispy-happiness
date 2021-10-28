@@ -8,9 +8,11 @@ function getTrackInfo(trackInfo) {
     method: "GET",
     dataType: "json",
     success: function (result) {
+      console.log(result)
       wikiAPI(result.track[0])
       displayTrackVid(result.track[0])
       displayTrackGenre(result.track[0])
+      displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}` )
     }
 })
 }
@@ -29,6 +31,43 @@ function wikiAPI(trackInfo) {
       console.log("error");
     }
   })
+}
+
+
+
+
+function displayLyrics(artistAndSong) {
+  artistAndSong = encodeURIComponent(artistAndSong.trim());
+  console.log(artistAndSong);
+  let thisSongSearch = {
+      "async": true,
+      "crossDomain": true,
+      "url": `https://api.happi.dev/v1/music?q=${artistAndSong}&limit=&apikey=8aa80fF4TsMsXsB2d59W5W467VbH3gss5bZhonBPURMZMU1opXZCRPQq&type=track&lyrics=1`,
+      "method": "GET"
+  };
+  console.log(thisSongSearch.url);
+  $.ajax(thisSongSearch).then(function (songInfo) {
+      console.log(songInfo.result[0]);
+      artistId = songInfo.result[0].id_artist;
+      albumId = songInfo.result[0].id_album;
+      trackId = songInfo.result[0].id_track;
+      let thisLyricSearch = {
+          "async": true,
+          "crossDomain": true,
+          "url": `https://api.happi.dev/v1/music/artists/${artistId}/albums/${albumId}/tracks/${trackId}/lyrics?apikey=8aa80fF4TsMsXsB2d59W5W467VbH3gss5bZhonBPURMZMU1opXZCRPQq`,
+          "method": "GET"
+      };
+      $.ajax(thisLyricSearch).then(function (lyricInfo) {
+          console.log(lyricInfo.result.lyrics)
+          ;
+          appendLyric(lyricInfo.result.lyrics)
+
+      });
+  });
+}
+
+function appendLyric(lyric) {
+  $("#trackLyrics").html($(pEl).append(lyric))
 }
 
 function displayTrackDesc(trackDescription, wikiResult) {
@@ -62,3 +101,15 @@ function displayTrackGenre(trackGenre) {
   $("#trackGenre").append($("<p>").text(trackGenre.strGenre))
   }
   
+
+  function giphyAPI(giphyTrack) {
+    $.ajax( {
+      url: giURL + giSearch + giphyTrack + giLimit,
+      type: "GET",
+      dataType: "json",
+      success: function (result) {
+      console.log(result)
+      }
+    })
+  }
+  giphyAPI()
