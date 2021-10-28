@@ -53,4 +53,4 @@ function giphyAPI(giphyTrack) {
       }
     })
   }
-  giphyAPI()
+  

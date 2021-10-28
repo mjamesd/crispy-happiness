@@ -13,6 +13,7 @@ function getTrackInfo(trackInfo) {
       displayTrackVid(result.track[0])
       displayTrackGenre(result.track[0])
       displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}` )
+      giphyAPI(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
     }
 })
 }
