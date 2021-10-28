@@ -102,14 +102,3 @@ function displayTrackGenre(trackGenre) {
   }
   
 
-  function giphyAPI(giphyTrack) {
-    $.ajax( {
-      url: giURL + giSearch + giphyTrack + giLimit,
-      type: "GET",
-      dataType: "json",
-      success: function (result) {
-      console.log(result)
-      }
-    })
-  }
-  giphyAPI()
