@@ -150,6 +150,10 @@ a:visited {
     text-shadow: 1px 1px 1px black;
 }
 
+#topTracksList a {
+    cursor: pointer;
+}
+
 
 #mediaContainer h3,
 #artistDiscography h3 {
@@ -202,7 +206,7 @@ footer {
     background-color: var(--accent2);
 }
 
-#footerEl {
+.footerEl {
     padding: 10px;
     background-color: var(--accent2);
     border-color: black;
@@ -234,4 +238,8 @@ footer {
     footer {
         background-color: var(--accent2)
     }
+#artistBioText {
+    overflow: hidden;
+    max-height: 6em;
+    transition: all 0.75s ease-in-out;
 }
