@@ -46,18 +46,7 @@ const showMoreEl = $("#showMore")
 // Names of dynamically-created elements
 const artistBioText = "artistBioText";
 
-// Elements to use for selectors
-const divEl = "<div>";
-const h1El = "<h1>";
-const h2El = "<h2>";
-const h3El = "<h3>";
-const pEl = "<p>";
-const liEl = "<li>";
-const aEl = "<a>";
-const imgEl = "<img>";
 
-// Page variables
-const localStorageEntity = "cph-";
 
 // Write the artist image and bio to the "artistBio" element
 function displayBio(thisArtist) {
@@ -169,3 +158,15 @@ const carouselaEl = $("<a>").addClass("carousel-item").append('<img src="https:/
   $(".carousel").append(carouselaEl)
   
 // artistFacebookEl.html($(imgEl).src(data[0]));
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.carousel');
+//     var instances = M.Carousel.init(elems, options);
+//   });
+
+//   // Or with jQuery
+
+//   $(document).ready(function(){
+//     $('.carousel').carousel();
+//   });

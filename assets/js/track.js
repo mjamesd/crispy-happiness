@@ -1,7 +1,6 @@
 
 let trackId = localStorage.getItem("Track ID")
-let wikiApiResult
-let adbResult
+
 
 function getTrackInfo(trackInfo) {
   $.ajax({
@@ -10,24 +9,24 @@ function getTrackInfo(trackInfo) {
     dataType: "json",
     success: function (result) {
       console.log(result)
-      adbResult = result
-      wikiAPI(adbResult)
-      displayTrackVid(adbResult)
-      displayTrackGenre(adbResult)
+      wikiAPI(result.track[0])
+      displayTrackVid(result.track[0])
+      displayTrackGenre(result.track[0])
+      displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}` )
+      giphyAPI(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
     }
 })
 }
 
 getTrackInfo()
 
-function wikiAPI(trackName) {
+function wikiAPI(trackInfo) {
   $.ajax({
-    url: `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${trackName.track[0].strTrack} (${trackName.track[0].strArtist} song)&format=json&origin=*`,
+    url: wikiURL +  trackInfo.strTrack + " (" + trackInfo.strArtist + " song)" + wikiAfterSearch,
     type: "GET",
     dataType: "json",
     success: function (result) {
-      wikiApiResult = result
-      displayTrackDesc()
+      displayTrackDesc(trackInfo, result.query.search[0])
     },
     error: function () {
       console.log("error");
@@ -35,21 +34,72 @@ function wikiAPI(trackName) {
   })
 }
 
-function displayTrackDesc() {
-  if (adbResult.track[0].strDescriptionEN === null) {
-    $("#trackDesc").append($("<p>").html(`<b>${wikiApiResult.query.search[0].title}</b>`)).append($("<p>").html(`${wikiApiResult.query.search[0].snippet} ...`)).append($("<p>").html(`<a href="http://en.wikipedia.org/?curid=${wikiApiResult.query.search[0].pageid}">... Read More on Wikipedia</a>`))
+
+
+
+function displayLyrics(artistAndSong) {
+  artistAndSong = encodeURIComponent(artistAndSong.trim());
+  console.log(artistAndSong);
+  let thisSongSearch = {
+      "async": true,
+      "crossDomain": true,
+      "url": `https://api.happi.dev/v1/music?q=${artistAndSong}&limit=&apikey=8aa80fF4TsMsXsB2d59W5W467VbH3gss5bZhonBPURMZMU1opXZCRPQq&type=track&lyrics=1`,
+      "method": "GET"
+  };
+  console.log(thisSongSearch.url);
+  $.ajax(thisSongSearch).then(function (songInfo) {
+      console.log(songInfo.result[0]);
+      artistId = songInfo.result[0].id_artist;
+      albumId = songInfo.result[0].id_album;
+      trackId = songInfo.result[0].id_track;
+      let thisLyricSearch = {
+          "async": true,
+          "crossDomain": true,
+          "url": `https://api.happi.dev/v1/music/artists/${artistId}/albums/${albumId}/tracks/${trackId}/lyrics?apikey=8aa80fF4TsMsXsB2d59W5W467VbH3gss5bZhonBPURMZMU1opXZCRPQq`,
+          "method": "GET"
+      };
+      $.ajax(thisLyricSearch).then(function (lyricInfo) {
+          console.log(lyricInfo.result.lyrics)
+          ;
+          appendLyric(lyricInfo.result.lyrics)
+
+      });
+  });
+}
+
+function appendLyric(lyric) {
+  $("#trackLyrics").html($(pEl).append(lyric))
+}
+
+function displayTrackDesc(trackDescription, wikiResult) {
+  let trackName = trackDescription.strTrack
+  let trackDesc = trackDescription.strDescriptionEN
+
+  if (trackDescription.strDescriptionEN === null) {
+    $("#trackDesc").append(`<b>${wikiResult.title}</b>`).append($(pEl).html(`${wikiResult.snippet} ...`)).append($(pEl).html(`<a href="http://en.wikipedia.org/?curid=${wikiResult.pageid}">... Read More on Wikipedia</a>`))
   } else {
-    $("#trackDesc").append(`<b>${wikiApiResult.query.search[0].title}</b><p>${adbResult.track[0].strDescriptionEN}`)
-}
+    $("#trackDesc").append(`<b>${trackName}</b><p class="readmore">${trackDesc}`)
+    $(".readmore").readmore({
+      speed: 75,
+      maxHeight: 100
+    });
+    }
 }
 
 
-function displayTrackVid(trackYouTube, songTitle) {
-  let _href = $("<a>").attr("href", trackYouTube).text(songTitle);
-  $("#trackYouTube").append(_href)
+function displayTrackVid(trackYouTube) {
+  console.log(trackYouTube.strMusicVid)
+  if (trackYouTube.strMusicVid === null) {
+    console.log("add giphy here")
+    $("#trackYouTube").text("giphy image here")
+  } else {
+  let _href = $("<a>").attr("href", trackYouTube.strMusicVid).text(trackYouTube.strTrack);
+  $("#trackYouTube").append(`<b>Visit the YouTube video here:</b><p>`).append(_href)
+}
 }
 
 function displayTrackGenre(trackGenre) {
-  $("#trackGenre").append($("<p>").text(trackGenre.track[0].strGenre))
+  $("#trackGenre").append($("<p>").text(trackGenre.strGenre))
   }
   
+

@@ -1,28 +1,48 @@
 /* General Styles */
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background3.jpg") no-repeat center center fixed;
-    background-size: cover;
-    background-color: navy;
+    background-color: var(--background);
+    --accent1: #fff;
+    --accent2: #fc6907;
+    --accent3: rgb(255, 189, 102);
+    --background: #e6e6e6;
 }
 
 header {
-    margin-top: 20px;
-    color: white;
+    margin-top: 0px;
+    color: --accent1;
     text-shadow: 1px 1px 3px black;
+    background-color: var(--accent1);
+
 }
 
-img {
-    border: 1px solid rgba(255, 255, 255, 0.349);
+
+
+ol {
+    color: white;
 }
 
-.row {
-    margin: 0px;
+.btn {
+    background-color: var(--accent3);
+    color: black
 }
 
-.container {
-    background-color: rgba(255, 255, 255, 0.479);
+.btn:hover {
+    background-color: black;
+    color: white;
 }
+
+.waves-effect.waves-black .waves-ripple {
+    background-color: var(--accent2);
+}
+
+header .container {
+    background-color: var(--accent2);
+    
+
+}
+
+
 
 .displayNoneOnLoad {
     display: none;
@@ -39,13 +59,12 @@ a:link {
 a:hover,
 a:visited:hover {
     text-decoration: none;
-    color: black
+    color: black;
 }
 
 a:visited {
     text-decoration: none;
     color: white;
-    text-shadow: 1px 1px 1px black;
 }
 
 /* Search Container */
@@ -54,13 +73,13 @@ a:visited {
     display: inline;
     margin-top: 20px;
     font-size: 16px;
-    color: white;
+    color: black;
 }
 
 #searchArtist {
     width: 250px;
     background-color: white;
-    border: 1px solid rgba(255, 255, 255, 0.349);
+    border: 1px solid black;
     height: 30px;
     font-size: 16px;
     padding: 5px;
@@ -79,11 +98,10 @@ a:visited {
 #footerContainer,
 #trackLyricContainer,
 #trackMediaContainer {
-    background-color: transparent;
     margin: 0px;
-    padding: 10px;
     text-align: center;
     font-size: 20px;
+    
 }
 
 /* Artist Page Content Styling */
@@ -93,32 +111,50 @@ a:visited {
 }
 
 #artistBio {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
+    white-space: pre-line;
+    color: white;
     padding: 10px;
-    background-color: rgba(255, 0, 0, 0.705);
-    white-space: pre-line
+}
 
+#artistBio img {
+    border: 1px solid rgba(255, 255, 255, 0.349);
 }
 
 #topTracks {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
     text-align: left;
     padding: 10px;
-    background-color: rgba(255, 166, 0, 0.733);
-    margin-bottom: 10px;
+
 }
 
 #topTracks h3 {
     text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+
+#mediaContainer h3,
+#artistDiscography h3 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-shadow: 1px 1px 1px white;
 }
 
 #artistDiscography {
+    
     text-align: left;
     padding: 10px;
-    background-color: rgba(0, 255, 21, 0.733);
-    margin-bottom: 10px;
-}
 
-#artistDiscography h3 {
-    text-align: center;
+    color: white;
 }
 
 .discographyThumbnail {
@@ -127,29 +163,46 @@ a:visited {
 
 #artistWebsite { 
     padding: 10px;
-    background-color: rgba(255, 255, 0, 0.712);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
+    color: white;
     margin: 0px;
     margin-bottom: 10px;
+    border: 2px solid;
+    border-color: var(--background);
 }
 
 #artistLastFm {
     padding: 10px;
-    background-color: rgba(0, 128, 0, 0.705);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
+    border: 2px solid;
+    border-color: var(--background);
+    color: white;
     margin: 0px;
     margin-bottom: 10px;
 }
 
 #artistTwitter {
     padding: 10px;
-    background-color: rgba(0, 0, 255, 0.658);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
+    border: 2px solid;
+    border-color: var(--background);
+    color: white;
     margin: 0px;
     margin-bottom: 10px;
 }
 
 #artistFacebook {
     padding: 10px;
-    background-color: rgba(0, 0, 255, 0.658);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background6.jpg")no-repeat center center fixed;
+    background-size: cover;
+    border: 2px solid;
+    border-color: var(--background);
+    color: white;
     margin: 0px;
+
 }
 
 
@@ -158,6 +211,7 @@ a:visited {
 #trackGenre { 
     padding: 10px;
     background-color: rgba(255, 0, 0, 0.705);
+    border: 1px solid rgba(255, 255, 255, 0.349);
     margin: 0px;
     margin-bottom: 10px;
 }
@@ -165,6 +219,7 @@ a:visited {
 #trackDesc { 
     padding: 10px;
     background-color: rgba(255, 166, 0, 0.733);
+    border: 1px solid rgba(255, 255, 255, 0.349);
     margin: 0px;
     margin-bottom: 10px;
     white-space: pre-line
@@ -173,6 +228,7 @@ a:visited {
 #trackYouTube { 
     padding: 10px;
     background-color: rgba(255, 255, 0, 0.712);
+    border: 1px solid rgba(255, 255, 255, 0.349);
     margin: 0px;
     margin-bottom: 10px;
 }
@@ -181,17 +237,42 @@ a:visited {
     text-align: left;
     padding: 10px;
     background-color: rgba(0, 128, 0, 0.705);
+    border: 1px solid rgba(255, 255, 255, 0.349);
+    white-space: pre-line;
 }
 
 #giphyPics {
     text-align: left;
     padding: 10px;
     background-color: rgba(0, 0, 255, 0.658);
+    border: 1px solid rgba(255, 255, 255, 0.349);
 }
 
 /* Footer Specific Styling */
 
+footer {
+    background-color: var(--background);
+}
+
+#footercontainer {
+    border: 1px solid black;
+    background-color: var(--accent1);
+}
+
 #footerEl {
     padding: 10px;
-    background-color: rgba(128, 0, 128, 0.726);
+    background-color: var(--accent2);
+    border-color: black;
+    color: white;
+    
+}
+
+.readmore {
+    overflow: hidden;
+}
+
+.carousel {
+    padding: 0px;
+    margin: 0px;
+    height: 300px;
 }
