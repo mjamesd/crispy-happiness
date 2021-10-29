@@ -1,30 +1,3 @@
-// script for artist page (index.html)
-
-// API info
-// for TheAudioDB.com "tadb"
-// const tadbApiKey = "523532";
-// const tadbURL = "https://theaudiodb.com/api/v1/json/" + tadbApiKey + "/";
-// const tadbArtist = "search.php?s="; // give artist name
-// const tadbArtistDetails = "artist.php?i=" // give artist ID
-// const tadbArtistTopTracks = "track-top10.php?s="; // give artist NAME!!
-// const tadbAllAlbums = "album.php?i="; // give artist ID
-// const tadbAlbumTracks = "track.php?m="; // give album ID
-// const tadbTrackDetails_1 = "searchtrack.php?s=";
-// const tadbTrackDetails_2 = "&t="; // combine TrackDetails_1 & _2
-// const tadbTrack = "track.php?h="; // give track ID
-// const tadbMusicVideos = "mvid.php?i=" // give artist ID
-
-// chartlyrics "cl"
-// const clURL = "http://api.chartlyrics.com/apiv1.asmx/";
-// const clLyrics_1 = "SearchLyricDirect?artist=";
-// const clLyrics_2 = "&song=";// add artist name and song name and then combine clLyrics_1 & _2
-
-// Giphy "gi"
-// const giApiKey_dev = "dc6zaTOxFJmzC";
-// const giAPiKey_prod = "";
-// const giURL = "https://giphy.p.rapidapi.com/v1/gifs/search?api_key=" + giApiKey_dev
-// const giSearch = "&q=";
-
 // DOCUMENT SELECTORS
 const searchBtnEl = $("#searchBtn");
 const searchArtistInputEl = $("#searchArtist");
@@ -48,10 +21,7 @@ const carouselEl = $(".carousel")
 const artistBioText = "artistBioText";
 
 
-<<<<<<< HEAD
-=======
 // FUNCTIONS
->>>>>>> main
 
 // Write the artist image and bio to the "artistBio" element
 function displayBio(thisArtist) {
@@ -60,11 +30,7 @@ function displayBio(thisArtist) {
     artistBioEl.append($(divEl).attr("id", artistBioText).text(thisArtist.strBiographyEN))
     //Adds a read more element to limit or show all the bio
     $("#artistBioText").readmore({
-<<<<<<< HEAD
-        speed: 75,
-=======
         speed: 750,
->>>>>>> main
       })
 
 }
@@ -143,14 +109,17 @@ function displayLinks(artistInfo) {
 }
 
 function renderArtistPage(artistInfo, save = true) {
+    console.log(artistInfo.artists[0].strArtistBanner)
     artistInfo = artistInfo.artists[0];
     if (save === true) {
         localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
-    }
+    } 
     displayBio(artistInfo);
     displayTopTracks(artistInfo.strArtist);
     displayLinks(artistInfo);
     displayDiscography(artistInfo.idArtist);
+    localStorage.setItem("Banner URL", artistInfo.strArtistBanner);
+
 }
 
 // const tadbTrendingTracks = "trending.php?country=us&type=itunes&format=singles"; // returns trending music
@@ -180,14 +149,6 @@ function init() {
 }
 
 
-// BEGIN CODE EXECUTION HERE
-
-// Initialize carousel
-// $(document).ready(function () {
-//     $('.carousel').carousel();
-// });
-
-// Attach event listener
 searchBtnEl.click(() => {
     let thisSearch = {
         "async": true,
@@ -198,6 +159,7 @@ searchBtnEl.click(() => {
     $.ajax(thisSearch).then(function (artistInfo) {
         artistInfo = artistInfo.artists[0];
         localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
+        localStorage.setItem("Banner URL", artistInfo.strArtistBanner)
         console.log(artistInfo);
         displayBio(artistInfo);
         displayTopTracks(artistInfo.strArtist);
