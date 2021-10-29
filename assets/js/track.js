@@ -1,5 +1,7 @@
 
 let trackId = localStorage.getItem("Track ID")
+let artistInfo = JSON.parse(localStorage.getItem("cph-artistInfo"))
+
 
 // Audio DB API Pull -- Page Anchor // 
 function getTrackInfo(trackInfo) {
@@ -12,14 +14,14 @@ function getTrackInfo(trackInfo) {
       wikiAPI(result.track[0])
       displayTrackVid(result.track[0])
       displayTrackGenre(result.track[0])
-      displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
+      getLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
       giphyAPI(`${result.track[0].strArtist} artist`)
     }
   })
 }
 
 // launches everything // 
-getTrackInfo()
+getTrackInfo() 
 
 
 // Wikipedia API pull. This is a back-up to the track description if there is no information on AudioDB//
@@ -29,6 +31,7 @@ function wikiAPI(trackInfo) {
     type: "GET",
     dataType: "json",
     success: function (result) {
+      
       displayTrackDesc(trackInfo, result.query.search[0])
     },
     error: function () {
@@ -38,7 +41,7 @@ function wikiAPI(trackInfo) {
 }
 
 // Track lyrics API pull from Happi. Get the track lyrics //
-function displayLyrics(artistAndSong) {
+function getLyrics(artistAndSong) {
   artistAndSong = encodeURIComponent(artistAndSong.trim());
   console.log(artistAndSong);
   let thisSongSearch = {
@@ -67,11 +70,6 @@ function displayLyrics(artistAndSong) {
   });
 }
 
-// Appends the track Genre to the page //
-function displayTrackGenre(trackGenre) {
-  $("#trackGenre").html($(pEl).append(`<h5>Genre</h5><p>${trackGenre.strGenre}`))
-}
-
 // Appends the track description information to the page //
 function displayTrackDesc(trackDescription, wikiResult) {
   let trackName = trackDescription.strTrack
@@ -88,21 +86,8 @@ function displayTrackDesc(trackDescription, wikiResult) {
   }
 }
 
-// Appends the YouTube Link to the page //
-function displayTrackVid(trackYouTube) {
-  console.log(trackYouTube.strMusicVid)
-  if (trackYouTube.strMusicVid === null) {
-    console.log("add giphy here")
-    $("#trackYouTube").text("giphy image here")
-  } else {
-    let _href = $("<a>").attr("href", trackYouTube.strMusicVid).text(trackYouTube.strTrack);
-    $("#trackYouTube").html($(pEl).append(`<h5>Visit the YouTube video here:</h5><p>`).append(_href))
-  }
-}
-
-
 // Appends the track lyrics to the page //
-function appendLyric(lyric) {
+function displayLyric(lyric) {
   $("#trackLyrics").html($(pEl).append(`<h5>Lyrics</h5><p class="readmore">${lyric}`))
   $(".readmore").readmore({
     speed: 75,
@@ -110,5 +95,19 @@ function appendLyric(lyric) {
   })
 }
 
+// Appends the track Genre to the page //
+function displayTrackGenre(trackGenre) {
+  $("#trackGenre").html($(pEl).append(`<h5>Genre</h5><p>${trackGenre.strGenre}`))
+}
 
-result.data[0].images.fixed_height.mp4
+// Appends the YouTube Link to the page //
+function displayTrackVid(trackResults) {
+  if (trackResults.strMusicVid === null) {
+    giphyAPI(trackResults.strArtist, $("#trackYouTube"))
+  } else {
+    let _href = $("<a>").attr("href", trackResults.strMusicVid).text(trackResults.strTrack);
+    $("#trackYouTube").html($(pEl).append(`<h5>Visit the YouTube video here:</h5><p>`).append(_href))
+  }
+}
+
+
