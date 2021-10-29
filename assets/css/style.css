@@ -285,8 +285,19 @@ footer {
     overflow: hidden;
 }
 
+
+
+#artistBioText {
+    overflow: hidden;
+    max-height: 6em
+}
+
 .carousel {
     padding: 0px;
     margin: 0px;
-    height: 300px;
+}
+
+#artistBioText {
+    overflow: hidden;
+    max-height: 6em
 }

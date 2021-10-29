@@ -1,30 +1,5 @@
 // script for artist page (index.html)
 
-// API info
-// for TheAudioDB.com "tadb"
-// const tadbApiKey = "523532";
-// const tadbURL = "https://theaudiodb.com/api/v1/json/" + tadbApiKey + "/";
-// const tadbArtist = "search.php?s="; // give artist name
-// const tadbArtistDetails = "artist.php?i=" // give artist ID
-// const tadbArtistTopTracks = "track-top10.php?s="; // give artist NAME!!
-// const tadbAllAlbums = "album.php?i="; // give artist ID
-// const tadbAlbumTracks = "track.php?m="; // give album ID
-// const tadbTrackDetails_1 = "searchtrack.php?s=";
-// const tadbTrackDetails_2 = "&t="; // combine TrackDetails_1 & _2
-// const tadbTrack = "track.php?h="; // give track ID
-// const tadbMusicVideos = "mvid.php?i=" // give artist ID
-
-// chartlyrics "cl"
-// const clURL = "http://api.chartlyrics.com/apiv1.asmx/";
-// const clLyrics_1 = "SearchLyricDirect?artist=";
-// const clLyrics_2 = "&song=";// add artist name and song name and then combine clLyrics_1 & _2
-
-// Giphy "gi"
-// const giApiKey_dev = "dc6zaTOxFJmzC";
-// const giAPiKey_prod = "";
-// const giURL = "https://giphy.p.rapidapi.com/v1/gifs/search?api_key=" + giApiKey_dev
-// const giSearch = "&q=";
-
 // DOCUMENT SELECTORS
 const searchBtnEl = $("#searchBtn");
 const searchArtistInputEl = $("#searchArtist");
@@ -41,18 +16,18 @@ const artistLastFmEl = $("#artistLastFm");
 const artistTwitterEl = $("#artistTwitter");
 const artistFacebookEl = $("#artistFacebook");
 const artistInfoEl = $("#artistInfo");
+const showMoreEl = $("#showMore")
 
-// Names of dynamically-created elements
-const artistBioText = "artistBioText";
+const carouselaEl = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/5">')
+const carousela2El = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/3">')
+const carouselEl = $(".carousel")
 
-
+// FUNCTIONS
 
 // Write the artist image and bio to the "artistBio" element
-function displayBio(thisArtist) {
-    artistBioEl.empty();
-    artistBioEl.append($(imgEl).attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`).attr("class", "responsive-img"));
-    artistBioEl.append($(divEl).attr("id", artistBioText).text(`${thisArtist.strBiographyEN.substr(0, 200)}... (read more)`));
-    // Jefrey -- add jQuery UI widget 'dialog' to display all bio text when "read more" is clicked... see line 81 & 82
+function displayBio(artistInfo) {
+    artistBioEl.html($(imgEl).attr("src", artistInfo.strArtistBanner).attr("alt", `${artistInfo.strArtist} banner image`).attr("class", "responsive-img"));
+    artistBioEl.append($(divEl).attr("id", "artistBioText").text(`${artistInfo.strBiographyEN.substr(0,200)}... (read more)`));
 }
 
 // Write artist's top tracks as list items in "topTracksList" ordered list
@@ -65,7 +40,7 @@ function displayTopTracks(artistName) {
         "method": "GET"
     };
     let thisTopTracks = $.ajax(thisSearch).then(function (topTracksResponse) {
-        console.log("Top Tracks: ", topTracksResponse);
+        // console.log("Top Tracks: ", topTracksResponse);
         topTracksListEl.empty();
         for (let index = 0; index < topTracksResponse.track.length; index++) {
             topTracksListEl.append($(liEl).html($(aEl).attr("href", `./track.html?trackId=${topTracksResponse.track[index].idTrack}`).attr("name", topTracksResponse.track[index].idTrack).text(topTracksResponse.track[index].strTrack).on("click", function () {
@@ -86,23 +61,34 @@ function displayDiscography(artistId) {
         "url": tadbURL + tadbAllAlbums + artistId,
         "method": "GET"
     };
-    $.ajax(thisSearch).then(function(discographyResponse) {
+    $.ajax(thisSearch).then(function (discographyResponse) {
         thisDiscography = discographyResponse.album;
+        // console.log("Discography: ", thisDiscography);
+        console.log(discographyResponse)
         console.log("Discography: ", thisDiscography);
         artistDiscographyListEl.empty();
+        carouselEl.empty();
+        
         for (let index = 0; index < thisDiscography.length; index++) {
+
+        let carouselaEl = $("<a>").addClass("carousel-item").attr("href", `#${index}`)
+        if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
+            carouselaEl.append('<img src="https://lorempixel.com/250/250/nature/2">')  
+        } else {
+            carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"))
+        }
+  
+            carouselEl.append(carouselaEl)
+            carouselaEl.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
             thisAlbum = $(liEl).html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
             thisAlbum.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
+            
             // TO DO: add .click event to show more info in jQuery UI widget 'dialog' box.
-            if (index == 5) {
-                artistDiscographyListEl.append($(liEl).html($(aEl).attr("id", "seeMoreDiscography").text("see more")));
-                // TO DO: Add .click event to show all albums
-            }
+
             // By default, only show the first five albums (most popular) but write all of them to the page
-            if (index >= 5) {
-                thisAlbum.addClass("displayNoneOnLoad");
-            }
-            artistDiscographyListEl.append(thisAlbum);
+
+        $('.carousel').carousel();
+
         }
     });
 }
@@ -110,12 +96,56 @@ function displayDiscography(artistId) {
 // Write artist links to the corresponding elements.
 // Links open in a new window/tab.
 function displayLinks(artistInfo) {
+    // console.log(artistInfo);
     artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite));
     // Jefrey -- can you slice the Last.fm link so that it goes to their main page instead of the chart?
-    artistLastFmEl.html($(aEl).attr("href", artistInfo.strLastFMChart).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
+    let lastFmSubstrPos = (artistInfo.strLastFMChart).search("\+charts")-1;
+    // console.log(lastFmSubstrPos);
+    let lastFmMain = artistInfo.strLastFMChart.substr(0, 20);
+    // console.log(lastFmMain);
+    artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
+    // artistLastFmEl.html($(aEl).attr("href", artistInfo.strLastFMChart).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
     artistTwitterEl.html($(aEl).attr("href", `http://${artistInfo.strTwitter}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Twitter`));
     artistFacebookEl.html($(aEl).attr("href", `http://${artistInfo.strFacebook}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Facebook`));
 }
+
+function renderArtistPage(artistInfo, save = true) {
+    artistInfo = artistInfo.artists[0];
+    if (save === true) {
+        localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
+    }
+    displayBio(artistInfo);
+    displayTopTracks(artistInfo.strArtist);
+    displayLinks(artistInfo);
+    displayDiscography(artistInfo.idArtist);
+}
+
+// const tadbTrendingTracks = "trending.php?country=us&type=itunes&format=singles"; // returns trending music
+function init() {
+    // make API call to get the trending tracks
+    let thisSearch = {
+        "async": true,
+        "crossDomain": true,
+        "url": tadbURL + tadbTrendingTracks,
+        "method": "GET"
+    };
+    $.ajax(thisSearch).then(function (trendingTracks) {
+        // pick a random one
+        let randomTrendingTrack = Math.floor(Math.random() * trendingTracks.trending.length);
+        // then search for it and render the page
+        let thisArtistSearch = {
+            "async": true,
+            "crossDomain": true,
+            "url": tadbURL + tadbArtist + trendingTracks.trending[randomTrendingTrack].strArtist,
+            "method": "GET"
+        };
+        $.ajax(thisArtistSearch).then(function (artistInfo) {
+            renderArtistPage(artistInfo, false); // render, but do not save to localStorage
+        });
+    });
+}
+
+init();
 
 
 searchBtnEl.click(() => {
@@ -126,25 +156,6 @@ searchBtnEl.click(() => {
         "method": "GET"
     };
     $.ajax(thisSearch).then(function (artistInfo) {
-        artistInfo = artistInfo.artists[0];
-        localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
-        console.log(artistInfo);
-        displayBio(artistInfo);
-        displayTopTracks(artistInfo.strArtist);
-        displayLinks(artistInfo);
-        displayDiscography(artistInfo.idArtist);
+        renderArtistPage(artistInfo);
     });
 });
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.carousel').carousel();
-  });
