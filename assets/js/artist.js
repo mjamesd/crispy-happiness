@@ -43,6 +43,10 @@ const artistFacebookEl = $("#artistFacebook");
 const artistInfoEl = $("#artistInfo");
 const showMoreEl = $("#showMore")
 
+const carouselaEl = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/5">')
+const carousela2El = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/3">')
+const carouselEl = $(".carousel")
+
 // Names of dynamically-created elements
 const artistBioText = "artistBioText";
 
@@ -52,9 +56,12 @@ const artistBioText = "artistBioText";
 function displayBio(thisArtist) {
     artistBioEl.empty();
     artistBioEl.append($(imgEl).attr("src", thisArtist.strArtistBanner).attr("alt", `${thisArtist.strArtist} banner image`).attr("class", "responsive-img"));
-    artistBioEl.append($(divEl).attr("id", artistBioText).text(`${thisArtist.strBiographyEN.substr(0, 200)}... (read more)`).on("click", function () {
-    }));
-    // Jefrey -- add jQuery UI widget 'dialog' to display all bio text when "read more" is clicked... see line 81 & 82
+    artistBioEl.append($(divEl).attr("id", artistBioText).text(thisArtist.strBiographyEN))
+    //Adds a read more element to limit or show all the bio
+    $("#artistBioText").readmore({
+        speed: 75,
+      })
+
 }
 
 // Write artist's top tracks as list items in "topTracksList" ordered list
@@ -90,30 +97,31 @@ function displayDiscography(artistId) {
     };
     $.ajax(thisSearch).then(function(discographyResponse) {
         thisDiscography = discographyResponse.album;
+        console.log(discographyResponse)
         console.log("Discography: ", thisDiscography);
         artistDiscographyListEl.empty();
+        carouselEl.empty();
+        
         for (let index = 0; index < thisDiscography.length; index++) {
+        let carouselaEl = $("<a>").addClass("carousel-item").attr("href", `#${index}`)
+        if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
+            carouselaEl.append('<img src="https://lorempixel.com/250/250/nature/2">')  
+        } else {
+            carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"))
+        }
+  
+            carouselEl.append(carouselaEl)
+            carouselaEl.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
             thisAlbum = $(liEl).html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
             thisAlbum.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
+            
             // TO DO: add .click event to show more info in jQuery UI widget 'dialog' box.
-            if (index == 5) {
-                artistDiscographyListEl.append($(liEl).html($(aEl).attr("id", "seeMoreDiscography").text("see more")));
-                // TO DO: Add .click event to show all albums
-                $("#seeMoreDiscography").on("click", function () {
-                    $(".displayNoneOnLoad").show()
-                    $("#seeMoreDiscography").hide()
-                })
-            }
+
             // By default, only show the first five albums (most popular) but write all of them to the page
-            if (index >= 5) {
-                thisAlbum.addClass("displayNoneOnLoad");
-            }
-            artistDiscographyListEl.append(thisAlbum);
+
+        $('.carousel').carousel();
+
         }
-        artistDiscographyListEl.append($(liEl).html($(aEl).attr("class", "displayNoneOnLoad").text("see less").on("click", function(){
-            $(".displayNoneOnLoad").hide()
-            $("#seeMoreDiscography").show()
-        })))
     });
 }
 
@@ -150,12 +158,7 @@ searchBtnEl.click(() => {
     $('.carousel').carousel();
   });
 
-const carouselaEl = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/5">')
 
-
-
-
-  $(".carousel").append(carouselaEl)
   
 // artistFacebookEl.html($(imgEl).src(data[0]));
 
