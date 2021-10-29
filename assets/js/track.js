@@ -73,7 +73,7 @@ function displayLyrics(artistAndSong) {
 // Displays the banner and artist song title to the page //
 function displayBanner(artistTrack) {
   let bannerURL = localStorage.getItem("Banner URL")
-  $("#bannerOnTracks").html($(`<img src="${bannerURL}"><p><h3>${artistTrack}</h3></p>`))
+  $("#bannerOnTracks").html($(`<img src="${bannerURL}"><p><h3>"${artistTrack}"</h3></p>`))
 }
 
 // Appends the track description information to the page //
