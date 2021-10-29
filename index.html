@@ -1,124 +1,120 @@
-<!-- Artist Page -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="./assets/css/jquery-ui.structure.css">
-    <link rel="stylesheet" href="./assets/css/jquery-ui.theme.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="./assets/css/jquery-ui.css" />
+    <link rel="stylesheet" href="./assets/css/jquery-ui.structure.css"> /
+    <link rel="stylesheet" href="./assets/css/jquery-ui.theme.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Crispy Happiness</title>
+    <title>TuneSpace | Explore Your Music</title>
 </head>
-
-
 
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container">
-        <div class="row">
-            <!-- header text -->
-            <div class="col s12 m6 center-align">
-                <img src="assets/img/Tune Space-logos_black cropped.png" class="responsive-img">
-            </div>
-            <!-- Search Area -->
-            <div class="col s12 m6 right-align" id="searchContainer">
-                <div class="row col s12">
-                    <!-- <label for="searchArtist" style="font-size: 16px; color: black;">Search</label> -->
-                    <input type="text" placeholder="Enter an Artist Name here.." id="searchArtist" />
+            <div class="row">
+                <!-- Header logo -->
+                <div class="col s12 m6 center-align">
+                    <img src="./assets/img/Tune Space-logos_black cropped.png" class="responsive-img" alt="TuneSpace" />
                 </div>
-                <div class="row col s12 right-align">
-                    <button class="btn waves-effect waves-black waves-ripple" type="submit" name="action" id="searchBtn">Search for Artist
-                    </button>
+                <!-- Search Area -->
+                <div class="col s12 m6 right-align" id="searchContainer">
+                    <div class="row col s12">
+                        <input type="text" placeholder="Explore by Artist..." id="searchArtist" />
+                    </div>
+                    <div class="row col s12 right-align">
+                        <button class="btn waves-effect waves-black waves-ripple" type="submit" name="action"
+                            id="searchBtn">Search for Artist
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </header>
+
+    <!-- CONTENT -->
     <main>
-    <div class="container">
-    <div class="row">
-        <!-- Artist Bio -->
-        <div class="col s12 center-align" id="artistBioContainer">
-            <div class="col s12" id="artistBio">
-            </div>
-        </div>
-    </div>
-    <!-- Artrist top 10 tracks -->
-    <div class="row">
-        <div class="col s12" id="topTracksContainer">
-            <div class="col s12 m5" id="topTracks">
-                <h3>Top Tracks</h3>
-                
-                <ol id="topTracksList">
-                </ol>
-            </div>
-            <div class="col s12 m1">
+        <div class="container">
+            <section class="row">
+                <!-- Artist Bio -->
+                <article class="col s12 center-align" id="artistBioContainer">
+                    <div class="col s12" id="artistBio">
+                    </div>
+                </article>
+            </section>
+            <section class="row">
+                <!-- Artrist top tracks & discography -->
+                <div class="col s12" id="topTracksContainer">
+                    <article class="col s12 m5" id="topTracks">
+                        <h3>Top Tracks</h3>
+                        <ol id="topTracksList">
+                        </ol>
+                    </article>
+                    <div class="col s12 m1">
+                    </div>
+                    <article class="col s12 m6" id="artistDiscography">
+                        <h3>Discography</h3>
+                        <div class="carousel">
+                            <!-- LOAD CAROUSEL HERE -->
+                        </div>
+                    </article>
                 </div>
-            <div class="col s12 m6" id="artistDiscography">
-                <h3>Discography</h3>
-                <div class="carousel">
-                    <a class="carousel-item" href="#one!"></a>
-                  </div>
-                <ul id="artistDiscographyList">
-                </ul>
-            </div>
-            </div>
-        </div>
-        <!-- Media Link Container -->
-        <div class="row">
-        <div class="col s12 m12 center-align" id="mediaContainer">
-            <h3>Visit This Artist's Media Platforms</h3>
-            <div class="row col s12 m3" id="artistWebsite">
-                Artist Website
-            </div>
-            <div class="row col s12 m3" id="artistLastFm">
-                Last FM
-            </div>
-            <div class="row col s12 m3" id="artistTwitter">
-                Twitter
-            </div>
-            <div class="row col s12 m3" id="artistFacebook">
-                Facebook
-            </div>
+            </section>
 
+            <!-- Media Link Container -->
+            <section class="row">
+                <div class="col s12 m12 center-align" id="mediaContainer">
+                    <h3>Visit This Artist's Media Platforms</h3>
+                    <article class="row col s12 m3" id="artistWebsite">
+                        Artist Website
+                    </article>
+                    <article class="row col s12 m3" id="artistLastFm">
+                        Last FM
+                    </article>
+                    <article class="row col s12 m3" id="artistTwitter">
+                        Twitter
+                    </article>
+                    <article class="row col s12 m3" id="artistFacebook">
+                        Facebook
+                    </article>
+                </div>
+            </section>
         </div>
-        </div>
-    </div>
-</main>
+    </main>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-        <div class="row" id="footerContainer">
-            <div class="col s4 center-align" id="footerEl">
-                About Us
-            </div>
-            <div class="col s4 center-align" id="footerEl">
-                Github Repo
-            </div>
-            <div class="col s4 center-align" id="footerEl">
-                Disclaimer
+            <div class="row" id="footerContainer">
+                <div class="col s4 center-align footerEl">
+                    <a href="./about.html">About Us</a>
+                </div>
+                <div class="col s4 center-align footerEl">
+                    <a href="https://github.com/mjamesd/crispy-happiness" target="_blank">Github Repo</a>
+                </div>
+                <div class="col s4 center-align footerEl">
+                    <a href="./disclaimer.html">Disclaimer</a>
+                </div>
             </div>
         </div>
-    </div>
     </footer>
 
-
-    <div id="artistInfo"></div>
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.2.0/readmore.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/artist.js"></script>
     <script src="./assets/js/track.js"></script>
-    <script src="./assets/js/jquery-ui.js"></script>
-    
+
 </body>
 
 </html>
