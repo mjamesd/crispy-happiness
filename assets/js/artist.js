@@ -160,8 +160,12 @@ searchBtnEl.click(() => {
   $(document).ready(function(){
     $('.carousel').carousel();
   });
-const testimgEl = "https://lorempixel.com/250/250/nature/5"
 
-  $(".carousel").append(aEl).attr("class", "carousel-item").attr("href", "#five!").prepend('<img id="theImg" src="https://lorempixel.com/250/250/nature/5" />')
+const carouselaEl = $("<a>").addClass("carousel-item").append('<img src="https://lorempixel.com/250/250/nature/5">')
 
+
+
+
+  $(".carousel").append(carouselaEl)
+  
 // artistFacebookEl.html($(imgEl).src(data[0]));
