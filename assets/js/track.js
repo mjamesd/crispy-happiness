@@ -16,6 +16,7 @@ function getTrackInfo(trackInfo) {
       displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
       giphyAPI(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
       displayBanner(result.track[0].strTrack)
+      homeButton(result.track[0].strArtist)
     }
   })
 }
@@ -23,7 +24,12 @@ function getTrackInfo(trackInfo) {
 // launches everything // 
 getTrackInfo() 
 
+function homeButton(artistName) {
+  $("#homeBtn").on("click", function(){
+    localStorage.setItem("Artist from Tracks", artistName)
+  })
 
+}
 // Wikipedia API pull. This is a back-up to the track description if there is no information on AudioDB//
 function wikiAPI(trackInfo) {
   $.ajax({
@@ -73,7 +79,7 @@ function displayLyrics(artistAndSong) {
 // Displays the banner and artist song title to the page //
 function displayBanner(artistTrack) {
   let bannerURL = localStorage.getItem("Banner URL")
-  $("#bannerOnTracks").html($(`<img src="${bannerURL}"><p><h3>"${artistTrack}"</h3></p>`))
+  $("#bannerOnTracks").html($(`<img src="${bannerURL}" class="responsive-img><p><h3>"${artistTrack}"</h3></p>`))
 }
 
 // Appends the track description information to the page //
