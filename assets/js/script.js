@@ -29,7 +29,7 @@ const giLimit = "&limit=5";
 
 const wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
 const wikiAfterSearch = "&format=json&origin=*"
-
+ 
 // Elements to use for selectors
 const divEl = "<div>";
 const h1El = "<h1>";
@@ -51,7 +51,6 @@ function giphyAPI(inputVal, selector) {
     success: function (result) {
       // console.log(result)
       $(selector).html($(imgEl).attr("src", result.data[0].images.fixed_height.url));
-
     }
   })
 }
