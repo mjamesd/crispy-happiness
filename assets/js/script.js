@@ -51,33 +51,6 @@ function giphyAPI(inputVal, selector) {
     success: function (result) {
       // console.log(result)
       $(selector).html($(imgEl).attr("src", result.data[0].images.fixed_height.url));
-
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
