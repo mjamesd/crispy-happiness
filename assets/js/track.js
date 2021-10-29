@@ -21,8 +21,7 @@ function getTrackInfo(trackInfo) {
   })
 }
 
-// launches everything // 
-getTrackInfo() 
+
 
 function homeButton(artistName) {
   $("#homeBtn").on("click", function(){
@@ -121,3 +120,5 @@ function displayTrackVid(trackResults) {
 }
 
 
+// launches everything // 
+getTrackInfo() 
