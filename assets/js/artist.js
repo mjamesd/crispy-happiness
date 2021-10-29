@@ -1,5 +1,3 @@
-// script for artist page (index.html)
-
 // DOCUMENT SELECTORS
 const searchBtnEl = $("#searchBtn");
 const searchArtistInputEl = $("#searchArtist");
@@ -69,7 +67,7 @@ function displayDiscography(artistId) {
         "url": tadbURL + tadbAllAlbums + artistId,
         "method": "GET"
     };
-    $.ajax(thisSearch).then(function (discographyResponse) {
+    $.ajax(thisSearch).then(function(discographyResponse) {
         thisDiscography = discographyResponse.album;
         carouselEl.empty(); // remove any existing albums (i.e., from the last search)
         for (let index = 0; index < thisDiscography.length; index++) {
@@ -111,14 +109,17 @@ function displayLinks(artistInfo) {
 }
 
 function renderArtistPage(artistInfo, save = true) {
+    console.log(artistInfo.artists[0].strArtistBanner)
     artistInfo = artistInfo.artists[0];
     if (save === true) {
         localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
-    }
+    } 
     displayBio(artistInfo);
     displayTopTracks(artistInfo.strArtist);
     displayLinks(artistInfo);
     displayDiscography(artistInfo.idArtist);
+    localStorage.setItem("Banner URL", artistInfo.strArtistBanner);
+
 }
 
 // const tadbTrendingTracks = "trending.php?country=us&type=itunes&format=singles"; // returns trending music
@@ -148,14 +149,6 @@ function init() {
 }
 
 
-// BEGIN CODE EXECUTION HERE
-
-// Initialize carousel
-// $(document).ready(function () {
-//     $('.carousel').carousel();
-// });
-
-// Attach event listener
 searchBtnEl.click(() => {
     let thisSearch = {
         "async": true,
@@ -164,7 +157,14 @@ searchBtnEl.click(() => {
         "method": "GET"
     };
     $.ajax(thisSearch).then(function (artistInfo) {
-        renderArtistPage(artistInfo);
+        artistInfo = artistInfo.artists[0];
+        localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
+        localStorage.setItem("Banner URL", artistInfo.strArtistBanner)
+        console.log(artistInfo);
+        displayBio(artistInfo);
+        displayTopTracks(artistInfo.strArtist);
+        displayLinks(artistInfo);
+        displayDiscography(artistInfo.idArtist);
     });
 });
 

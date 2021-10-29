@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./assets/css/jquery-ui.css" />
-    <link rel="stylesheet" href="./assets/css/jquery-ui.structure.css"> /
+    <link rel="stylesheet" href="./assets/css/jquery-ui.structure.css" /> 
     <link rel="stylesheet" href="./assets/css/jquery-ui.theme.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>TuneSpace | Explore Your Music</title>
@@ -19,15 +19,16 @@
     <header>
         <div class="container">
             <div class="row">
-                <!-- Header logo -->
-                <div class="col s12 m6 center-align">
-                    <img src="./assets/img/Tune Space-logos_black cropped.png" class="responsive-img" alt="TuneSpace" />
+                <!-- header text -->
+                <div class="col s6">
+                    <img src="assets/img/TuneSpace.png" class="responsive-img">
+                </div>
+            <!-- Search Area -->
+            <div class="col s12 m6 right-align" id="searchContainer">
+                <div class="row col s12">
+                    <input type="text" placeholder="Enter an Artist Name here.." id="searchArtist" />
                 </div>
                 <!-- Search Area -->
-                <div class="col s12 m6 right-align" id="searchContainer">
-                    <div class="row col s12">
-                        <input type="text" placeholder="Explore by Artist..." id="searchArtist" />
-                    </div>
                     <div class="row col s12 right-align">
                         <button class="btn waves-effect waves-black waves-ripple" type="submit" name="action"
                             id="searchBtn">Search for Artist
@@ -92,13 +93,13 @@
     <footer>
         <div class="container">
             <div class="row" id="footerContainer">
-                <div class="col s4 center-align footerEl">
+                <div class="col s4 center-align" id="footerEl1">
                     <a href="./about.html">About Us</a>
                 </div>
-                <div class="col s4 center-align footerEl">
+                <div class="col s4 center-align" id="footerEl2">
                     <a href="https://github.com/mjamesd/crispy-happiness" target="_blank">Github Repo</a>
                 </div>
-                <div class="col s4 center-align footerEl">
+                <div class="col s4 center-align" id="footerEl3">
                     <a href="./disclaimer.html">Disclaimer</a>
                 </div>
             </div>
