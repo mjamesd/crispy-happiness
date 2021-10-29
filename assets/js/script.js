@@ -50,6 +50,7 @@ function giphyAPI(giphyTrack) {
       dataType: "json",
       success: function (result) {
       console.log(result)
+      
       }
     })
   }
