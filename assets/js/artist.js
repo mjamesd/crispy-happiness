@@ -118,7 +118,8 @@ function renderArtistPage(artistInfo, save = true) {
     displayTopTracks(artistInfo.strArtist);
     displayLinks(artistInfo);
     displayDiscography(artistInfo.idArtist);
-    localStorage.setItem("Banner URL", artistInfo.strArtistBanner);
+    localStorage.setItem("Banner URL", artistInfo.strArtistBanner)
+    ;
 
 }
 

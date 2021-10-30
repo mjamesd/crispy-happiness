@@ -24,8 +24,8 @@ function getTrackInfo(trackInfo) {
 
 
 function homeButton(artistName) {
-  $("#homeBtn").on("click", function(){
-    localStorage.setItem("Artist from Tracks", artistName)
+  $("#homeClick").on("click", function(){
+    localStorage.setItem("Artist from Tracks", localStorage.getItem(`${localStorageEntity}artistInfo`))
   })
 
 }
