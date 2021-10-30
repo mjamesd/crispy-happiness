@@ -81,7 +81,7 @@ function displayDiscography(artistInfo) {
                 let carouselaEl = $(aEl).addClass("carousel-item").attr("href", `#${index}`);
                 // If no album art exists in TADB, display random pic 
                 if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
-                    carouselaEl.append($(imgEl).attr("src", "https://lorempixel.com/250/250/nature/2"));
+                    carouselaEl.append($(imgEl).attr("src", artistInfo.strArtistThumb));
                 } else {
                     carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
                 }
