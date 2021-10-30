@@ -24,16 +24,12 @@ h3 {
     text-shadow: 1px 1px 1px black;
 }
 
-ol {
-    color: white;
-}
-
-.btn {
+#searchBtn {
     background-color: var(--accent3);
     color: black
 }
 
-.btn:hover {
+#searchBtn:hover {
     background-color: black;
     color: white;
 }
@@ -76,6 +72,8 @@ a:visited {
     color: black;
 }
 
+
+
 #searchArtist {
     width: 250px;
     background-color: white;
@@ -89,6 +87,11 @@ a:visited {
     color: gray;
 }
 
+#searchArtist:focus {
+    border-bottom: 1px solid black;
+    box-shadow: 0 0px 0 0 black
+}
+
 /* Content Styling */
 
 #artistBioContainer, #topTracksContainer, #artistDiscography, #mediaContainer, #footerContainer, #trackLyricContainer, #trackDescContainer, #trackGenreContainer, #trackYouTubeContainer, #bannerContainer {
@@ -97,9 +100,8 @@ a:visited {
     font-size: 16px;
 }
 
-#trackDiscRow {
+#topTracksContainer {
     display: flex;
-    justify-content: space-evenly;
     align-content: stretch;
     flex-wrap: wrap;
 }
@@ -115,7 +117,7 @@ a:visited {
     background-size: cover;
     white-space: pre-line;
     color: white;
-    text-align: left;
+    text-align: center;
     padding: 10px;
 }
 
@@ -124,6 +126,7 @@ a:visited {
 }
 
 #artistBioText {
+    text-align: left;
     overflow: hidden;
     max-height: 6em;
     transition: all 0.75s ease-in-out;
@@ -141,6 +144,21 @@ a:visited {
 }
 
 #topTracksList a {
+    text-decoration: none;
+    color: var(--accent2);
+}
+
+#topTracksList a:hover, a:visited:hover {
+    text-decoration: none;
+    color: var(--accent1);
+}
+
+#topTracksList a:visited {
+    text-decoration: none;
+    color: var(--accent2);
+}
+
+#topTracksList a {
     cursor: pointer;
 }
 
@@ -154,7 +172,8 @@ a:visited {
 
 #mediaRow {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #artistDiscography {
@@ -165,13 +184,6 @@ a:visited {
 
 .discographyThumbnail {
     width: 50px;
-}
-
-#mediaRow {
-    display: flex;
-    justify-content: space-evenly;
-    align-content: stretch;
-    align-items: stretch center;
 }
 
 #artistWebsite, #artistLastFm, #artistTwitter, #artistFacebook {
