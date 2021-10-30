@@ -246,7 +246,7 @@ footer a:visited {
     text-align: center;
 }
 
-
+/* responsive design element*/
 @media screen and (max-width: 400px) {
     footer {
         background-color: var(--accent2)
