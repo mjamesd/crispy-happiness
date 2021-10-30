@@ -13,10 +13,7 @@ const tadbTrack = "track.php?h="; // give track ID
 const tadbMusicVideos = "mvid.php?i=" // give artist ID
 const tadbTrendingTracks = "trending.php?country=us&type=itunes&format=singles"; // returns trending music
 
-// chartlyrics "cl"
-const clURL = "http://api.chartlyrics.com/apiv1.asmx/";
-const clLyrics_1 = "SearchLyricDirect?artist=";
-const clLyrics_2 = "&song=";// add artist name and song name and then combine clLyrics_1 & _2
+
 
 // Giphy "gi"
 const giApiKey_dev = "y77I7HEXZ2xWwdfkxndsOFzyqCYZG2ip";
