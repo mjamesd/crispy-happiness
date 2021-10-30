@@ -48,7 +48,6 @@ function displayTopTracks(artistName) {
         "method": "GET"
     };
     let thisTopTracks = $.ajax(thisSearch).then(function (topTracksResponse) {
-        // console.log("Top Tracks: ", topTracksResponse);
         topTracksListEl.empty();// remove any existing tracks (i.e., from the last search)
         for (let index = 0; index < topTracksResponse.track.length; index++) {
             // Append track to list as link to track.html page. Passes track to localStorage.
@@ -78,7 +77,6 @@ function displayDiscography(artistInfo) {
             return
         } else {
             // remove any existing albums (i.e., from the last search)
-            console.log("we have a discography!")
             for (let index = 0; index < thisDiscography.length; index++) {
                 let carouselaEl = $(aEl).addClass("carousel-item").attr("href", `#${index}`);
                 // If no album art exists in TADB, display random pic 

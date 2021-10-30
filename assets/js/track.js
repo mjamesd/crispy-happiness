@@ -16,7 +16,6 @@ function getTrackInfo(trackInfo) {
       result.track[0].CPHbannerURL = localStorage.getItem("Banner URL");
       saveTrackInfo(result.track[0]);
       wikiAPI(result.track[0])
-      console.log(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
       displayLyrics(`${result.track[0].strArtist}  ${result.track[0].strTrack}`)
       displayTrackVid(result.track[0])
       displayTrackGenre(result.track[0])
