@@ -81,7 +81,7 @@ function displayDiscography(artistInfo) {
                 let carouselaEl = $(aEl).addClass("carousel-item").attr("href", `#${index}`);
                 // If no album art exists in TADB, display random pic 
                 if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
-                    carouselaEl.append($(imgEl).attr("src", "https://lorempixel.com/250/250/nature/2"));
+                    carouselaEl.append($(imgEl).attr("src", artistInfo.strArtistThumb));
                 } else {
                     carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
                 }
@@ -101,14 +101,16 @@ function displayDiscography(artistInfo) {
 function displayLinks(artistInfo) {
     if (artistInfo.strWebsite !== "" && artistInfo.strWebsite !== null) {
         artistWebsiteEl.css("display", "inline")
+        $("#containerMediaRow").css("display", "inline")
         artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite))
        } else {
         artistWebsiteEl.css("display", "none")
+        
     }
     // Slice the Last.fm link so that it goes to their main page instead of the chart
     if (artistInfo.strLastFMChart !== "" && artistInfo.strLastFMChart !== null) {
         artistLastFmEl.css("display", "inline")
-        $("#mediaContainer").css("display", "inline")
+        $("#containerMediaRow").css("display", "inline")
         let lastFmSubstrPos = artistInfo.strLastFMChart.search("charts") - 2; // why doesn't ("\+") work?
         let lastFmMain = artistInfo.strLastFMChart.substr(0, lastFmSubstrPos);
         artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
@@ -117,15 +119,14 @@ function displayLinks(artistInfo) {
     }
     if (artistInfo.strTwitter !== null && artistInfo.strTwitter !== "") {
         artistTwitterEl.css("display", "inline")
-        $("#mediaContainer").css("display", "inline")
+        $("#containerMediaRow").css("display", "inline")
         artistTwitterEl.html($(aEl).attr("href", `http://${artistInfo.strTwitter}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Twitter`));
     } else {
         artistTwitterEl.css("display", "none")
-        // giphyAPI(artistInfo.strArtist, artistTwitterEl);
     }
     if (artistInfo.strFacebook !== null && artistInfo.strFacebook !== "") {
         artistFacebookEl.css("display", "inline")
-        $("#mediaContainer").css("display", "inline")
+        $("#containerMediaRow").css("display", "inline")
         artistFacebookEl.html($(aEl).attr("href", `http://${artistInfo.strFacebook}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Facebook`));
     } else {
         // giphyAPI(artistInfo.strArtist, artistFacebookEl);
