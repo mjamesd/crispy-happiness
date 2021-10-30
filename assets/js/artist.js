@@ -149,6 +149,21 @@ function init() {
     });
 }
 
+//Disclaimer Parallax
+$(document).ready(function(){
+    $('.parallax').parallax();
+  });
+
+
+// Activating "Enter" button on search
+document.getElementById("searchArtist");
+addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("searchBtn").click();
+    }
+});
+
 
 searchBtnEl.click(() => {
     let thisSearch = {
