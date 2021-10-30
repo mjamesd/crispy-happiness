@@ -13,7 +13,8 @@ TuneSpace is a guide that provides biographies, discographies, and lyrics of mus
 * [Kanwara Moore](https://github.com/Maykanwara)
 * [Dan Golden](https://github.com/DanPGolden)   
 <br>
-*** 
+
+***
 # Technologies Used
 * HTML5
 * CSS3
@@ -33,6 +34,7 @@ TuneSpace is a guide that provides biographies, discographies, and lyrics of mus
 * The AudioDB API
 <br>
 <br>
+
 ***
 # The User Experience
 * As a music fan, I want to be able to search for an artist
