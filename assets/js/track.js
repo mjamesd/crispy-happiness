@@ -40,7 +40,7 @@ function wikiAPI(trackInfo) {
       displayTrackDesc(trackInfo, result.query.search[0])
     },
     error: function () {
-      console.log("error")
+    
     }
   })
 }
@@ -48,14 +48,14 @@ function wikiAPI(trackInfo) {
 // Track lyrics API pull from Happi. Get the track lyrics //
 function displayLyrics(artistAndSong) {
   artistAndSong = encodeURIComponent(artistAndSong.trim());
-  console.log(artistAndSong);
+ 
   let thisSongSearch = {
       "async": true,
       "crossDomain": true,
       "url": `https://api.happi.dev/v1/music?q=${artistAndSong}&limit=&apikey=8aa80fF4TsMsXsB2d59W5W467VbH3gss5bZhonBPURMZMU1opXZCRPQq&type=track&lyrics=1`,
       "method": "GET"
   };
-  console.log(thisSongSearch.url);
+ 
   $.ajax(thisSongSearch).then(function (songInfo) {
       artistId = songInfo.result[0].id_artist;
       albumId = songInfo.result[0].id_album;
@@ -67,7 +67,7 @@ function displayLyrics(artistAndSong) {
           "method": "GET"
       };
       $.ajax(thisLyricSearch).then(function (lyricInfo) {
-          console.log(lyricInfo.result.lyrics)
+          
           ;
           appendLyric(lyricInfo.result.lyrics)
 

@@ -91,11 +91,22 @@ function displayDiscography(artistId) {
 // Write artist links to the corresponding elements.
 // Links open in a new window/tab.
 function displayLinks(artistInfo) {
+   if (artistInfo.strWebsite !== "" && artistInfo.strWebsite !== null) {
     artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite));
+   }
+
     // Slice the Last.fm link so that it goes to their main page instead of the chart
+
+    
+    
+   if (artistInfo.strLastFMChart !== "" && artistInfo.strLastFMChart !== null) {
     let lastFmSubstrPos = artistInfo.strLastFMChart.search("charts") - 2; // why doesn't ("\+") work?
     let lastFmMain = artistInfo.strLastFMChart.substr(0, lastFmSubstrPos);
     artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
+   }
+
+
+
     if (artistInfo.strTwitter !== null && artistInfo.strTwitter !== "") {
         artistTwitterEl.html($(aEl).attr("href", `http://${artistInfo.strTwitter}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Twitter`));
     } else {
@@ -109,7 +120,7 @@ function displayLinks(artistInfo) {
 }
 
 function renderArtistPage(artistInfo, save = true) {
-    console.log(artistInfo.artists[0].strArtistBanner)
+   
     artistInfo = artistInfo.artists[0];
     if (save === true) {
         localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
@@ -161,7 +172,7 @@ searchBtnEl.click(() => {
         artistInfo = artistInfo.artists[0];
         localStorage.setItem(`${localStorageEntity}artistInfo`, JSON.stringify(artistInfo));
         localStorage.setItem("Banner URL", artistInfo.strArtistBanner)
-        console.log(artistInfo);
+     
         displayBio(artistInfo);
         displayTopTracks(artistInfo.strArtist);
         displayLinks(artistInfo);
