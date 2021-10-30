@@ -7,7 +7,6 @@ body {
     --accent2: #e65133;
     --accent3: rgb(255, 189, 102);
     --background: #e6e6e6;
-
 }
 
 header {
@@ -15,7 +14,6 @@ header {
     color: --accent1;
     text-shadow: 1px 1px 3px black;
     background-color: var(--accent1);
-
 }
 
 h3 {
@@ -46,16 +44,11 @@ ol {
 
 header .container {
     background-color: var(--accent2);
-    
-
 }
-
-
 
 .displayNoneOnLoad {
     display: none;
 }
-
 
 /* Link coloring and hover effect */
 
@@ -64,8 +57,7 @@ a:link {
     color: var(--accent2);
 }
 
-a:hover,
-a:visited:hover {
+a:hover, a:visited:hover {
     text-decoration: none;
     color: var(--accent1);
 }
@@ -99,24 +91,17 @@ a:visited {
 
 /* Content Styling */
 
-#artistBioContainer,
-#topTracksContainer,
-#artistDiscography,
-#mediaContainer,
-#footerContainer,
-#trackLyricContainer,
-#trackDescContainer,
-#trackGenreContainer,
-#trackYouTubeContainer,
-#bannerContainer {
+#artistBioContainer, #topTracksContainer, #artistDiscography, #mediaContainer, #footerContainer, #trackLyricContainer, #trackDescContainer, #trackGenreContainer, #trackYouTubeContainer, #bannerContainer {
     margin: 0px;
     text-align: center;
     font-size: 16px;
-    
 }
 
-#topTracksContainer {
+#trackDiscRow {
     display: flex;
+    justify-content: space-evenly;
+    align-content: stretch;
+    flex-wrap: wrap;
 }
 
 /* Page Styling -- Applies to index.html and tracks.html */
@@ -149,15 +134,17 @@ a:visited {
     background-size: cover;
     color: white;
     padding: 10px;
+}
 
+#topTracksList {
+    text-align: left;
 }
 
 #topTracksList a {
     cursor: pointer;
 }
 
-#mediaContainer h3,
-#artistDiscography h3 {
+#mediaContainer h3, #artistDiscography h3 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -180,15 +167,14 @@ a:visited {
     width: 50px;
 }
 
-#artistWebsite,
-#artistLastFm,
-#artistTwitter,
-#artistFacebook,
-#trackGenre,
-#trackDesc,
-#trackYouTube,
-#trackLyrics,
-#bannerOnTracks { 
+#mediaRow {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: stretch center;
+}
+
+#artistWebsite, #artistLastFm, #artistTwitter, #artistFacebook {
     padding: 10px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background.jpg")no-repeat center center fixed;
     background-size: cover;
@@ -198,7 +184,18 @@ a:visited {
     border: 2px solid;
     border-color: var(--background);
     white-space: pre-line;
-  
+}
+
+#trackGenre, #trackDesc, #trackYouTube, #trackLyrics, #bannerOnTracks {
+    padding: 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background.jpg")no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    margin: 0px;
+    margin-bottom: 10px;
+    border: 2px solid;
+    border-color: var(--background);
+    white-space: pre-line;
 }
 
 .readmore {
@@ -207,12 +204,10 @@ a:visited {
     transition: all 0.75s ease-in-out;
 }
 
-
 /* Footer Specific Styling */
 
 footer {
     background-color: var(--background);
-    height: 50px;
 }
 
 footer a:link {
@@ -220,8 +215,7 @@ footer a:link {
     color: var(--accent1);
 }
 
-footer a:hover,
-a:visited:hover {
+footer a:hover, a:visited:hover {
     text-decoration: none;
     color: black;
     font-weight: bold;
@@ -233,14 +227,12 @@ footer a:visited {
 }
 
 #footercontainer {
+    display: flex;
     border: 1px solid black;
-    background-color: var(--accent2);
-    height: 50px;
+    background-color: transparent;
 }
 
-#footerEl1,
-#footerEl2,
-#footerEl3 {
+#footerEl1, #footerEl2, #footerEl3 {
     padding: 10px;
     background-color: var(--accent2);
     border-color: black;
@@ -248,6 +240,7 @@ footer a:visited {
 }
 
 /* Carousel */
+
 .carousel {
     padding: 0px;
     margin: 0px;
@@ -256,8 +249,9 @@ footer a:visited {
 }
 
 /* responsive design element*/
+
 @media screen and (max-width: 400px) {
     footer {
-        background-color: var(--accent2)
+        background-color: var(--accent2);
     }
-
+}

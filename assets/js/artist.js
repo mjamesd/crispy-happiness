@@ -63,65 +63,82 @@ function displayTopTracks(artistName) {
 // Write artist discography (i.e., all albums, singles, etc.) to the "artistDiscography" element.
 // Accepts an artist ID
 // Uses "All Albums" API call -- this gets more info than tadb's discography API call.
-function displayDiscography(artistId) {
+function displayDiscography(artistInfo) {
     let thisSearch = {
         "async": true,
         "crossDomain": true,
-        "url": tadbURL + tadbAllAlbums + artistId,
+        "url": tadbURL + tadbAllAlbums + artistInfo.idArtist,
         "method": "GET"
     };
     $.ajax(thisSearch).then(function (discographyResponse) {
+        carouselEl.empty()
         thisDiscography = discographyResponse.album;
-        carouselEl.empty(); // remove any existing albums (i.e., from the last search)
-        for (let index = 0; index < thisDiscography.length; index++) {
-            let carouselaEl = $(aEl).addClass("carousel-item").attr("href", `#${index}`);
-            // If no album art exists in TADB, display random pic 
-            if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
-                carouselaEl.append($(imgEl).attr("src", "https://lorempixel.com/250/250/nature/2"));
-            } else {
-                carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
-            }
-            // Add album to page
-            carouselaEl.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
-            carouselEl.append(carouselaEl)
-            // Initialize the carousel with the newly-created elements
-            $('.carousel').carousel();
+        if (thisDiscography == null) {
+            // do something here //
+            return
+        } else {
+            // remove any existing albums (i.e., from the last search)
+            console.log("we have a discography!")
+            for (let index = 0; index < thisDiscography.length; index++) {
+                let carouselaEl = $(aEl).addClass("carousel-item").attr("href", `#${index}`);
+                // If no album art exists in TADB, display random pic 
+                if (thisDiscography[index].strAlbumThumb == null || thisDiscography[index].strAlbumThumb == '') {
+                    carouselaEl.append($(imgEl).attr("src", "https://lorempixel.com/250/250/nature/2"));
+                } else {
+                    carouselaEl.html($(imgEl).attr("src", thisDiscography[index].strAlbumThumb).attr("alt", thisDiscography[index].strAlbum).addClass("discographyThumbnail"));
+                }
+                // Add album to page
+                carouselaEl.append(`${thisDiscography[index].strAlbum}, ${thisDiscography[index].intYearReleased}`);
+                carouselEl.append(carouselaEl)
+                // Initialize the carousel with the newly-created elements
+                $('.carousel').carousel();
 
-        }
-    });
+            }
+        };
+    })
 }
 
 // Write artist links to the corresponding elements.
-// Links open in a new window/tab.
+// Links open in a new window / tab.
 function displayLinks(artistInfo) {
-   if (artistInfo.strWebsite !== "" && artistInfo.strWebsite !== null) {
-    artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite));
-   }
-
+    if (artistInfo.strWebsite !== "" && artistInfo.strWebsite !== null) {
+        artistWebsiteEl.css("display", "inline")
+        artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite))
+       } else {
+        artistWebsiteEl.css("display", "none")
+    }
     // Slice the Last.fm link so that it goes to their main page instead of the chart
-
-    
-    
-   if (artistInfo.strLastFMChart !== "" && artistInfo.strLastFMChart !== null) {
-    let lastFmSubstrPos = artistInfo.strLastFMChart.search("charts") - 2; // why doesn't ("\+") work?
-    let lastFmMain = artistInfo.strLastFMChart.substr(0, lastFmSubstrPos);
-    artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
-   }
-
-
-
+    if (artistInfo.strLastFMChart !== "" && artistInfo.strLastFMChart !== null) {
+        artistLastFmEl.css("display", "inline")
+        $("#mediaContainer").css("display", "inline")
+        let lastFmSubstrPos = artistInfo.strLastFMChart.search("charts") - 2; // why doesn't ("\+") work?
+        let lastFmMain = artistInfo.strLastFMChart.substr(0, lastFmSubstrPos);
+        artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
+       } else {
+        artistLastFmEl.css("display", "none")
+    }
     if (artistInfo.strTwitter !== null && artistInfo.strTwitter !== "") {
+        artistTwitterEl.css("display", "inline")
+        $("#mediaContainer").css("display", "inline")
         artistTwitterEl.html($(aEl).attr("href", `http://${artistInfo.strTwitter}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Twitter`));
     } else {
-        giphyAPI(`${artistInfo.strArtist} twitter`, artistTwitterEl.attr("id"));
+        artistTwitterEl.css("display", "none")
+        // giphyAPI(artistInfo.strArtist, artistTwitterEl);
     }
     if (artistInfo.strFacebook !== null && artistInfo.strFacebook !== "") {
+        artistFacebookEl.css("display", "inline")
+        $("#mediaContainer").css("display", "inline")
         artistFacebookEl.html($(aEl).attr("href", `http://${artistInfo.strFacebook}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Facebook`));
     } else {
-        giphyAPI(`${artistInfo.strArtist} facebook`, artistFacebookEl.attr("id"));
+        // giphyAPI(artistInfo.strArtist, artistFacebookEl);
+        artistFacebookEl.css("display", "none")
+    }
+    if (!artistInfo.strFacebook && !artistInfo.strTwitter && !artistInfo.strLastFMChart && !artistInfo.strWebsite) {
+        $("#containerMediaRow").css("display", "none")
+    } else {
+        return
     }
 }
-
 
 // renderArtistPage() saves the artist to localStorage and calls the functions that render individual sections of the page
 // It accepts artistInfo, which could be sent from a user search or from a randomly grabbed artist from top tracks.
@@ -130,7 +147,7 @@ function renderArtistPage(artistInfo, topArtist = false) {
     localStorage.setItem("Banner URL", artistInfo.strArtistBanner);
     displayBio(artistInfo, topArtist);
     displayTopTracks(artistInfo.strArtist);
-    displayDiscography(artistInfo.idArtist);
+    displayDiscography(artistInfo);
     displayLinks(artistInfo);
 }
 
@@ -166,13 +183,7 @@ function init() {
                 artistInfo = artistInfo.artists[0];
                 // Only use this artist if they have a banner, bio, and at least one media
                 if (artistInfo.strArtistBanner !== null && artistInfo.strArtistBanner !== "" &&
-                artistInfo.strBiographyEN  !== null && artistInfo.strBiographyEN  !== "" //&&
-                // (
-                //     (artistInfo.strWebsite      !== null && artistInfo.strWebsite       !== "") ||
-                //     (artistInfo.strLastFMChart  !== null && artistInfo.strLastFMChart   !== "") ||
-                //     (artistInfo.strTwitter      !== null && artistInfo.strTwitter       !== "") ||
-                //     (artistInfo.strFacebook     !== null && artistInfo.strFacebook      !== "")
-                //     )
+                artistInfo.strBiographyEN  !== null && artistInfo.strBiographyEN  !== "" 
                 ) {
                     // Render
                     renderArtistPage(artistInfo, true);
