@@ -94,11 +94,22 @@ function displayDiscography(artistId) {
 // Write artist links to the corresponding elements.
 // Links open in a new window/tab.
 function displayLinks(artistInfo) {
+   if (artistInfo.strWebsite !== "" && artistInfo.strWebsite !== null) {
     artistWebsiteEl.html($(aEl).attr("href", `http://${artistInfo.strWebsite}`).attr("target", "_blank").text(artistInfo.strWebsite));
+   }
+
     // Slice the Last.fm link so that it goes to their main page instead of the chart
+
+    
+    
+   if (artistInfo.strLastFMChart !== "" && artistInfo.strLastFMChart !== null) {
     let lastFmSubstrPos = artistInfo.strLastFMChart.search("charts") - 2; // why doesn't ("\+") work?
     let lastFmMain = artistInfo.strLastFMChart.substr(0, lastFmSubstrPos);
     artistLastFmEl.html($(aEl).attr("href", lastFmMain).attr("target", "_blank").text(`${artistInfo.strArtist} on Last.fm`));
+   }
+
+
+
     if (artistInfo.strTwitter !== null && artistInfo.strTwitter !== "") {
         artistTwitterEl.html($(aEl).attr("href", `http://${artistInfo.strTwitter}`).attr("target", "_blank").text(`${artistInfo.strArtist} on Twitter`));
     } else {
@@ -110,6 +121,7 @@ function displayLinks(artistInfo) {
         giphyAPI(`${artistInfo.strArtist} facebook`, artistFacebookEl.attr("id"));
     }
 }
+
 
 // renderArtistPage() saves the artist to localStorage and calls the functions that render individual sections of the page
 // It accepts artistInfo, which could be sent from a user search or from a randomly grabbed artist from top tracks.
@@ -172,6 +184,21 @@ function init() {
         });
     }
 }
+
+//Disclaimer Parallax
+$(document).ready(function(){
+    $('.parallax').parallax();
+  });
+
+
+// Activating "Enter" button on search
+document.getElementById("searchArtist");
+addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("searchBtn").click();
+    }
+});
 
 
 

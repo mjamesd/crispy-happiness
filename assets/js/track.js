@@ -56,7 +56,7 @@ function wikiAPI(trackInfo) {
       displayTrackDesc(trackInfo, result.query.search[0])
     },
     error: function () {
-      console.log("error")
+    
     }
   })
 }
