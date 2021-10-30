@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
     <link rel="stylesheet" href="./assets/css/jquery-ui.css" />
     <link rel="stylesheet" href="./assets/css/jquery-ui.structure.css" /> 
     <link rel="stylesheet" href="./assets/css/jquery-ui.theme.css" />
@@ -26,7 +27,7 @@
             <!-- Search Area -->
             <div class="col s12 m6 right-align" id="searchContainer">
                 <div class="row col s12">
-                    <input type="text" placeholder="Enter an Artist Name here.." id="searchArtist" />
+                    <input type="text" placeholder="Enter an Artist Name here..." id="searchArtist" />
                 </div>
                 <!-- Search Area -->
                     <div class="row col s12 right-align">
@@ -69,20 +70,16 @@
             </section>
 
             <!-- Media Link Container -->
-            <section class="row">
-                <section class="col s12 m12 center-align" id="mediaContainer">
-                    <h3>Visit This Artist's Media Platforms</h3>
+            <section class="row"  id="mediaContainer">
+                <h3>Visit This Artist's Media Platforms</h3>
+                <div class="col s12 m12 center-align" id="mediaRow">
                     <article class="row col s12 m3" id="artistWebsite">
-                        Artist Website
                     </article>
                     <article class="row col s12 m3" id="artistLastFm">
-                        Last FM
                     </article>
                     <article class="row col s12 m3" id="artistTwitter">
-                        Twitter
                     </article>
                     <article class="row col s12 m3" id="artistFacebook">
-                        Facebook
                     </article>
                 </section>
             </section>
@@ -106,6 +103,8 @@
         </div>
     </footer>
 
+    <div id="actionButton" class="fixed-action-btn"></div>
+
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -114,7 +113,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.2.0/readmore.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/artist.js"></script>
-    <script src="./assets/js/track.js"></script>
 
 </body>
 

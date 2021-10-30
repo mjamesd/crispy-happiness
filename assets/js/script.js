@@ -33,6 +33,7 @@ const h1El = "<h1>";
 const h2El = "<h2>";
 const h3El = "<h3>";
 const pEl = "<p>";
+const ulEl = "<ul>";
 const liEl = "<li>";
 const aEl = "<a>";
 const imgEl = "<img>";
@@ -50,4 +51,27 @@ function giphyAPI(inputVal, selector) {
       $(selector).html($(imgEl).attr("src", result.data[0].images.fixed_height.url));
     }
   })
+}
+
+// This will display a Materialize action button with the user's viewed tracks in it
+function displayActionButton() {
+  let thisActionButton = $("#actionButton");
+  thisActionButton.append($(aEl).addClass("btn-floating btn-large red").html(`<i class="large material-icons">library_music</i>`));
+  thisTrackList = $(ulEl).attr("id", "trackList");
+  let allTrackInfo = JSON.parse(localStorage.getItem(`${localStorageEntity}tracksInfo`)) || [];
+  console.log(allTrackInfo);
+  for (let index = allTrackInfo.length-1; index >= 0 ; index--) {
+    let thisTrackIcon = `<i class="material-icons">audiotrack</i>`;
+    let thisTrack = $(aEl).attr("href", "./track.html").addClass("btn-floating btn tooltipped").attr("data-position", "left").attr("data-tooltip", `${allTrackInfo[index].strTrack} by ${allTrackInfo[index].strArtist}`).html(thisTrackIcon).click(function() {
+      localStorage.setItem("Track ID", allTrackInfo[index].idTrack);
+      localStorage.setItem("Banner URL", allTrackInfo[index].CPHbannerURL);
+    });
+    // thisTrack.append(thisTrackIcon);
+    thisTrackList.append(thisTrack);
+  }
+  thisActionButton.append(thisTrackList);
+  // $(document.body).append(thisActionButton);
+  // console.log(thisActionButton);
+  $('.fixed-action-btn').floatingActionButton();
+  $('.tooltipped').tooltip();
 }
