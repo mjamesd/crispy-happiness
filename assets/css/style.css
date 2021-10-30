@@ -103,6 +103,7 @@ a:visited {
     align-content: stretch;
     flex-wrap: wrap;
 }
+
 /* Page Styling -- Applies to index.html and tracks.html */
 
 #artistInfo {
@@ -149,6 +150,11 @@ a:visited {
     font-weight: bold;
     color: black;
     text-shadow: 1px 1px 1px white;
+}
+
+#mediaRow {
+    display: flex;
+    justify-content: space-between;
 }
 
 #artistDiscography {
