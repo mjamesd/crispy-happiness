@@ -1,6 +1,6 @@
 // API info
 // for TheAudioDB.com "tadb"
-const tadbApiKey = "523532";
+const tadbApiKey = process.env.THEAUDIODB_KEY;
 const tadbURL = "https://theaudiodb.com/api/v1/json/" + tadbApiKey + "/";
 const tadbArtist = "search.php?s="; // give artist name
 const tadbArtistTopTracks = "track-top10.php?s="; // give artist NAME!!
